@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nNZdKhH9LY4wtMrEQLSHYPl/wl64dIiiF56Z62/PceKhGowXDUcaqrgb1oPoSoPDpe6cs0StZgkPzSPJFprbdA==",
+  "dgSpecHash": "VN0iuq76m6jUOywP37Vz83Ry5BnrvCzaeo0CrpXFiuSFSLhr53EYDshjF69vx8DT1MssYb5I0judSfaANZEkmg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Randula\\Desktop\\DIRM\\CourseSheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj",
+  "projectFilePath": "C:\\Project\\CourseScheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Randula\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.7\\microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
     "C:\\Users\\Randula\\.nuget\\packages\\microsoft.aspnet.razor\\3.2.7\\microsoft.aspnet.razor.3.2.7.nupkg.sha512",

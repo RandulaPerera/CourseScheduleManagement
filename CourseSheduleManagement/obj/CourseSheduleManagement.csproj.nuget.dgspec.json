@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Randula\\Desktop\\DIRM\\CourseSheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj": {}
+    "C:\\Project\\CourseScheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Randula\\Desktop\\DIRM\\CourseSheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj": {
+    "C:\\Project\\CourseScheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Randula\\Desktop\\DIRM\\CourseSheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj",
+        "projectUniqueName": "C:\\Project\\CourseScheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj",
         "projectName": "CourseSheduleManagement",
-        "projectPath": "C:\\Users\\Randula\\Desktop\\DIRM\\CourseSheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj",
+        "projectPath": "C:\\Project\\CourseScheduleManagement\\CourseSheduleManagement\\CourseSheduleManagement.csproj",
         "packagesPath": "C:\\Users\\Randula\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Randula\\Desktop\\DIRM\\CourseSheduleManagement\\CourseSheduleManagement\\obj\\",
+        "outputPath": "C:\\Project\\CourseScheduleManagement\\CourseSheduleManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
