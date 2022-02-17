@@ -1,0 +1,75 @@
+﻿@model System.Data.DataTable
+@{
+    ViewData["Title"] = "List of Batches";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#batchSearch").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#batchTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<div class="jumbotron">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+</div>
+<div>
+     <div class="row">
+       <div class="col-2">
+            <a asp-action="AddOrEdit" class="btn btn-primary">New Batch</a><br/><br/>
+       </div>
+       <div class="col-7">
+                         
+       </div>
+       <div class="col-3">
+            <input class="form-control" id="batchSearch" type="text" placeholder="Enter Batch Code...">
+       </div>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                Batch Code
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Course Name
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody id="batchTable">
+
+       @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+
+            <tr>
+                <td>
+                    @Model.Rows[i]["Code"]
+                </td>
+                <td>
+                    @Model.Rows[i]["Year"]
+                </td>
+                <td>
+                    @Model.Rows[i]["Name"]
+                </td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["BatchId"]" class="btn btn-success">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@Model.Rows[i]["BatchId"]" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }     
+    </tbody>
+</table>

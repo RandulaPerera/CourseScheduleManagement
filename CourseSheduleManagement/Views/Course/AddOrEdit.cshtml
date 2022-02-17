@@ -1,0 +1,73 @@
+﻿@model CourseSheduleManagement.Models.Course
+
+@{
+    ViewData["Title"] = Model.CourseId==0?"Create Course":"Update Course";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="AddOrEdit" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CourseId" />
+            <div class="form-group">
+                 <div class="row">
+                    <div class="col-12">
+                        <label class="control-label">Course Name</label>
+                        <input  id="coursename" asp-for="Name" class="form-control"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-12">
+                        <label class="control-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" ></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                 </div>
+                  <div class="row">
+                    <div class="col-12">
+                        <label class="control-label">Course Code</label>
+                        <input asp-for="Code" id="coursecode" class="form-control" disabled=""/>
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                        <div id="text"></div>
+                    </div>
+                 </div>
+               
+            </div>
+            <div class="form-group">
+                 <div class="row">
+                    <div class="col-1">
+                         <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                    <div class="col-2">
+                         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                    <div class="col-9">
+
+                    </div>
+                 </div>
+            </div>
+           
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+      
+        $('#coursename').keyup(function() {
+            
+             var input = $("#coursename").val();
+             let acronym = input.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'').toUpperCase();
+
+             $('#coursecode').val(acronym); 
+
+        });
+              
+</script>
+}

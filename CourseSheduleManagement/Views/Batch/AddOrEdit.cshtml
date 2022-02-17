@@ -1,0 +1,77 @@
+﻿@model CourseSheduleManagement.Models.Batch
+
+@{
+    ViewData["Title"] = Model.BatchId==0?"Create Batch":"Update Batch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="AddOrEdit" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BatchId" />
+            <div class="form-group">
+                 <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Course</label>
+                        <select id="selectCourseId" asp-for="CourseId" asp-items="ViewBag.CourseList as SelectList" class="form-control" onchange="GenarateBatchCode();">
+                            <option selected>-- Select Course --</option>
+                        </select>
+                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label">Year</label>
+                        <input asp-for="Year" class="form-control" />
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+                 </div>
+                  <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Batch Code</label>
+                        <input asp-for="Code" class="form-control" />
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                    </div>
+                 </div>
+                 
+            </div>
+            <div class="form-group">
+                 <div class="row">
+                    <div class="col-1">
+                         <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                    <div class="col-2">
+                         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                    <div class="col-9">
+
+                    </div>
+                 </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+
+function GenarateBatchCode() {   
+      
+        //$.get("/Student/GetBatchList",{ courseId:$('#selectCourseId').val() },function(data){
+        //    $("#selectBatchId").empty();
+        //    $("#selectBatchId").append("<option selected value=''>-- Select Batch --</option>");           
+        //    $.each(data,function(index,row){
+        //        $("#selectBatchId").append("<option value='"+row.batchId+"'>"+row.code+"</option>");
+        //    });
+        //});
+}
+
+</script>
+}
