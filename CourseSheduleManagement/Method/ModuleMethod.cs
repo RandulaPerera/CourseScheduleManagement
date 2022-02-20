@@ -23,15 +23,15 @@ namespace CourseSheduleManagement.Method
             if (dt.Rows.Count == 1)
             {
                 module.ModuleId =Convert.ToInt32(dt.Rows[0]["ModuleId"].ToString());
-                module.Name = dt.Rows[0]["Name"].ToString();
+                module.ModuleName = dt.Rows[0]["ModuleName"].ToString();
                 module.Description =  dt.Rows[0]["Description"].ToString();
                 module.CourseId =Convert.ToInt32(dt.Rows[0]["CourseId"].ToString());
             }
             return module;
         }
-        public void AddOrEditModule(int moduleId, string name, string description, int courseId)
+        public void AddOrEditModule(int moduleId, string moduleName, string description, int courseId)
         {
-            _moduleDataAccess.AddOrEditModule(moduleId,name,description,courseId);
+            _moduleDataAccess.AddOrEditModule(moduleId, moduleName, description,courseId);
         }
 
         public void DeleteModule(int moduleId)

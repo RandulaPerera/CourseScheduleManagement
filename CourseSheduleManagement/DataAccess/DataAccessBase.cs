@@ -76,7 +76,36 @@ namespace CourseSheduleManagement.DataAccess
 
             }
         }
-      
+
+        public object RunProcedureScalar(string procedurename, SqlParameter[] parameters)
+        {
+            try
+            {
+                SqlConnection cnn = Con();
+
+                SqlCommand cmd = new SqlCommand(procedurename, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandTimeout = 100000;
+
+                if (cnn.State == ConnectionState.Open) cnn.Close();
+                cnn.Open();
+
+                for (int i = 0; i <= parameters.GetUpperBound(0); i++)
+                {
+                    cmd.Parameters.Add(parameters[i]);
+                }
+                var result = cmd.ExecuteScalar();
+                cnn.Close();
+                return result;
+            }
+            catch
+            {
+                throw;
+
+            }
+
+        }
+
 
     }
 }

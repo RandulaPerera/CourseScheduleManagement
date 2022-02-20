@@ -4,7 +4,7 @@
     {
         public int BatchId { get; set; }
         public int Year { get; set; }
-        public string Code { get; set; }
+        public string BatchCode { get; set; }
         public int CourseId { get; set; }
     }
 }

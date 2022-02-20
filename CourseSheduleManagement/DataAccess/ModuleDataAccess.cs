@@ -24,12 +24,12 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQueryText("select * from Module where ModuleId=@Id", parameters).Tables[0];
         }
 
-        public void AddOrEditModule(int moduleId, string name,string description, int courseId)
+        public void AddOrEditModule(int moduleId, string moduleName, string description, int courseId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
             new SqlParameter("@ModuleId",moduleId),
-            new SqlParameter("@Name",name),
+            new SqlParameter("@ModuleName",moduleName),
             new SqlParameter("@Description",description),
             new SqlParameter("@CourseId",courseId)
             };

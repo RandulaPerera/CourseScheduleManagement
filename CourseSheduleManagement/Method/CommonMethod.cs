@@ -18,7 +18,8 @@ namespace CourseSheduleManagement.Method
             {
                 Course course = new Course();
                 course.CourseId = Convert.ToInt32(dt.Rows[i]["CourseId"]);
-                course.Name = dt.Rows[i]["Name"].ToString();
+                course.CourseName = dt.Rows[i]["CourseName"].ToString();
+                course.CourseCode = dt.Rows[i]["CourseCode"].ToString();
                 list.Add(course);
             }
             return list;
@@ -32,7 +33,7 @@ namespace CourseSheduleManagement.Method
             {
                 Batch batch = new Batch();
                 batch.BatchId = Convert.ToInt32(dt.Rows[i]["BatchId"]);
-                batch.Code = dt.Rows[i]["Code"].ToString();
+                batch.BatchCode = dt.Rows[i]["BatchCode"].ToString();
                 list.Add(batch);
             }
             return list;

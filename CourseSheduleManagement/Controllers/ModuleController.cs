@@ -31,7 +31,7 @@ namespace CourseSheduleManagement.Controllers
         public IActionResult AddOrEdit(int id)
         {
             List<Course> courseList = _commonMethod.GetCourses();
-            ViewBag.CourseList=new SelectList(courseList, "CourseId", "Name");
+            ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
 
             Module module = new Module();
             if (id > 0)
@@ -42,14 +42,14 @@ namespace CourseSheduleManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit(int id, [Bind("ModuleId,Name,Description,CourseId")] Module module)
+        public IActionResult AddOrEdit(int id, [Bind("ModuleId,ModuleName,Description,CourseId")] Module module)
         {
             List<Course> courseList = _commonMethod.GetCourses();
-            ViewBag.CourseList=new SelectList(courseList, "CourseId", "Name");
+            ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
 
             if (ModelState.IsValid)
             {
-                _moduleMethod.AddOrEditModule(module.ModuleId, module.Name, module.Description, module.CourseId);
+                _moduleMethod.AddOrEditModule(module.ModuleId, module.ModuleName, module.Description, module.CourseId);
                 return RedirectToAction(nameof(Index));
             }
             return View(module);

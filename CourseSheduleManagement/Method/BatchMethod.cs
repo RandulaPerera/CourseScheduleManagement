@@ -24,18 +24,24 @@ namespace CourseSheduleManagement.Method
                 batch.BatchId =Convert.ToInt32(dt.Rows[0]["BatchId"].ToString());
                 batch.Year = Convert.ToInt32(dt.Rows[0]["Year"].ToString());
                 batch.CourseId = Convert.ToInt32(dt.Rows[0]["CourseId"].ToString());
-                batch.Code =  dt.Rows[0]["Code"].ToString();
+                batch.BatchCode =  dt.Rows[0]["BatchCode"].ToString();
             }
             return batch;
         }
-        public void AddOrEditBatch(int batchId, int year, int courseId, string code)
+        public void AddOrEditBatch(int batchId, int year, int courseId, string batchCode)
         {
-            _batchDataAccess.AddOrEditBatch(batchId, year, courseId, code);
+            _batchDataAccess.AddOrEditBatch(batchId, year, courseId, batchCode);
         }
 
         public void DeleteBatch(int batchId)
         {
             _batchDataAccess.DeleteBatch(batchId);
+        }
+
+        public int GetBatchNo(int courseId, int year)
+        {
+            return _batchDataAccess.GetBatchNo(courseId, year);
+
         }
     }
 }

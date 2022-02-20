@@ -12,7 +12,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
 
                     };
-            return RunProcedureQueryText("select * from Course where IsDelete=0", parameters).Tables[0];
+            return RunProcedureQueryText("GetCourses", parameters).Tables[0];
         }
 
         public DataTable GetCourseById(int id)
@@ -24,13 +24,13 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQueryText("select * from Course where CourseId=@Id", parameters).Tables[0];
         }
 
-        public void AddOrEditCourse(int courseId,string name, string code, string description)
+        public void AddOrEditCourse(int courseId,string courseName, string courseCode, string description)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
             new SqlParameter("@CourseId",courseId),
-            new SqlParameter("@Name",name),
-            new SqlParameter("@Code",code),
+            new SqlParameter("@CourseName",courseName),
+            new SqlParameter("@CourseCode",courseCode),
             new SqlParameter("@Description",description)
             };
             RunProcedureQuery("AddorEditCourse", parameters);

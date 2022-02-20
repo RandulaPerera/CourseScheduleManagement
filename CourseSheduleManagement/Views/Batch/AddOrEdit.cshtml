@@ -27,15 +27,15 @@
                     </div>
                     <div class="col-6">
                         <label class="control-label">Year</label>
-                        <input asp-for="Year" class="form-control" />
+                        <input id="year" asp-for="Year" class="form-control" />
                         <span asp-validation-for="Year" class="text-danger"></span>
                     </div>
                  </div>
                   <div class="row">
                     <div class="col-6">
                         <label class="control-label">Batch Code</label>
-                        <input asp-for="Code" class="form-control" />
-                        <span asp-validation-for="Code" class="text-danger"></span>
+                        <input id="batchcode" asp-for="BatchCode" class="form-control" />
+                        <span asp-validation-for="BatchCode" class="text-danger"></span>
                     </div>
                  </div>
                  
@@ -61,16 +61,23 @@
 @section Scripts {
      @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script type="text/javascript">
+     
+     var todaydate = new Date();
+     var currentyear = todaydate.getFullYear(); 
+     document.getElementById("year").value= currentyear;
 
 function GenarateBatchCode() {   
       
-        //$.get("/Student/GetBatchList",{ courseId:$('#selectCourseId').val() },function(data){
-        //    $("#selectBatchId").empty();
-        //    $("#selectBatchId").append("<option selected value=''>-- Select Batch --</option>");           
-        //    $.each(data,function(index,row){
-        //        $("#selectBatchId").append("<option value='"+row.batchId+"'>"+row.code+"</option>");
-        //    });
-        //});
+   
+    var twoDigitYear = currentyear.toString().substr(-2);
+   
+     $.get("/Batch/GetBatchNo",{ courseId:$('#selectCourseId').val() , year:$('#year').val()},function(data){
+            var no=data+1;
+
+           $("#batchcode").val(twoDigitYear+"."+no);            
+            
+     });
+
 }
 
 </script>

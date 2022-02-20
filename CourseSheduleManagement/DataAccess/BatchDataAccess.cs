@@ -23,14 +23,14 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQueryText("select * from Batch where BatchId=@Id", parameters).Tables[0];
         }
 
-        public void AddOrEditBatch(int batchId, int year, int courseId,string code)
+        public void AddOrEditBatch(int batchId, int year, int courseId,string batchCode)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
             new SqlParameter("@BatchId",batchId),
             new SqlParameter("@Year",year),
             new SqlParameter("@CourseId",courseId),
-            new SqlParameter("@Code",code)
+            new SqlParameter("@BatchCode",batchCode)
             };
             RunProcedureQuery("AddorEditBatch", parameters);
         }
@@ -43,6 +43,16 @@ namespace CourseSheduleManagement.DataAccess
 
             };
             RunProcedureQuery("DeleteBatch", parameters);
+        }
+
+        public int GetBatchNo(int courseId, int year)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                    new SqlParameter("@CourseId", courseId),
+                    new SqlParameter("@Year", year)
+                    };
+            return int.Parse(RunProcedureScalar("GetBatchNo", parameters).ToString());
         }
     }
 }

@@ -37,11 +37,11 @@ namespace CourseSheduleManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit(int id, [Bind("CourseId,Name,Code,Description")] Course course)
+        public IActionResult AddOrEdit(int id, [Bind("CourseId,CourseName,CourseCode,Description")] Course course)
         {
             if (ModelState.IsValid)
             {
-                _courseMethod.AddOrEditCourse(course.CourseId, course.Name, course.Code, course.Description);
+                _courseMethod.AddOrEditCourse(course.CourseId, course.CourseName, course.CourseCode, course.Description);
                 return RedirectToAction(nameof(Index));
             }
             return View(course);

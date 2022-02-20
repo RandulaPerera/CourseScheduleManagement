@@ -57,13 +57,13 @@ $(document).ready(function(){
 
             <tr>
                 <td>
-                    @Model.Rows[i]["Code"]
+                    @Model.Rows[i]["BatchCode"]
                 </td>
                 <td>
                     @Model.Rows[i]["Year"]
                 </td>
                 <td>
-                    @Model.Rows[i]["Name"]
+                    @Model.Rows[i]["CourseName"]
                 </td>
                 <td>
                     <a asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["BatchId"]" class="btn btn-success">Edit</a>

@@ -28,7 +28,7 @@ namespace CourseSheduleManagement.Controllers
         public IActionResult AddOrEdit(int id)
         {
             List<Course> courseList = _commonMethod.GetCourses();
-            ViewBag.CourseList=new SelectList(courseList, "CourseId", "Name");
+            ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName","CourseCode");
 
             Batch batch = new Batch();
             if (id > 0)
@@ -39,14 +39,14 @@ namespace CourseSheduleManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit(int id, [Bind("BatchId,Year,CourseId,Code")] Batch batch)
+        public IActionResult AddOrEdit(int id, [Bind("BatchId,Year,CourseId,BatchCode")] Batch batch)
         {
             List<Course> courseList = _commonMethod.GetCourses();
-            ViewBag.CourseList=new SelectList(courseList, "CourseId", "Name");
+            ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
 
             if (ModelState.IsValid)
             {
-                _batchMethod.AddOrEditBatch(batch.BatchId, batch.Year, batch.CourseId, batch.Code);
+                _batchMethod.AddOrEditBatch(batch.BatchId, batch.Year, batch.CourseId, batch.BatchCode);
                 return RedirectToAction(nameof(Index));
             }
             return View(batch);
@@ -56,6 +56,13 @@ namespace CourseSheduleManagement.Controllers
         {
             _batchMethod.DeleteBatch(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public ActionResult GetBatchNo(int courseId, int year)
+        {
+            int batchNo = _batchMethod.GetBatchNo(courseId, year);
+            return Json(batchNo);
         }
     }
 }

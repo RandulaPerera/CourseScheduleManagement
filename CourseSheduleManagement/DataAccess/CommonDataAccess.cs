@@ -11,7 +11,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
 
                     };
-            return RunProcedureQueryText("select * from Course where IsDelete=0", parameters).Tables[0];
+            return RunProcedureQueryText("select * from Course where Active=1", parameters).Tables[0];
         }
 
         public DataTable GetBatchByCourseId(int id)
