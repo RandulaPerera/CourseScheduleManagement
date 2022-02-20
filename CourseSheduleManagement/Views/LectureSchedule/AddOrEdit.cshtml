@@ -1,0 +1,97 @@
+﻿@model CourseSheduleManagement.Models.Lecture
+
+@{
+    ViewData["Title"] = Model.ScheduleId==0?"Create Lecture Schedule":"Update Lecture Schedule";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="AddOrEdit" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ScheduleId" />
+            <div class="form-group">
+                 <div class="row">
+                    <div class="col-4">
+                        <label class="control-label">Batch</label>    
+                        <select id="selectBatchId" asp-for="BatchId" class="form-control"></select>
+                        <span asp-validation-for="BatchId" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Module</label>    
+                        <select id="selectModuleId" asp-for="ModuleId" class="form-control"></select>
+                        <span asp-validation-for="ModuleId" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Hall</label>    
+                        <select id="selectHallId" asp-for="HallId" class="form-control"></select>
+                        <span asp-validation-for="HallId" class="text-danger"></span>
+                    </div>
+                 </div>
+                  <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Lecture Type</label>    
+                        <select id="selectLectureType" asp-for="Type" class="form-control"></select>
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label">Lecturer</label>    
+                        <select id="selectLecturerId" asp-for="LecturerBy" class="form-control"></select>
+                        <span asp-validation-for="LecturerBy" class="text-danger"></span>
+                    </div>
+                 </div>
+                  <div class="row">
+                    <div class="col-4">
+                        <label class="control-label">Date</label>    
+                        <input id="date" asp-for="Date" type="date" class="form-control"/>
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Start Time</label>    
+                        <input id="starttime" asp-for="StartTime" type="time" class="form-control"/>
+                        <span asp-validation-for="StartTime" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">End Time</label>    
+                        <input id="endtime" asp-for="EndTime" type="time" class="form-control"/>
+                        <span asp-validation-for="EndTime" class="text-danger"></span>
+                    </div>
+                 </div>
+               
+            </div>
+            <div class="form-group">
+                 <div class="row">
+                    <div class="col-1">
+                         <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                    <div class="col-2">
+                         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                    <div class="col-9">
+
+                    </div>
+                 </div>
+            </div>
+           
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+      
+        //$('#coursename').keyup(function() {
+            
+        //     var input = $("#coursename").val();
+        //     let acronym = input.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'').toUpperCase();
+
+        //     $('#coursecode').val(acronym); 
+
+        //});
+              
+</script>
+}
