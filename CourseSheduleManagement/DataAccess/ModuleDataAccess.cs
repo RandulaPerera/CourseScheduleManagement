@@ -12,7 +12,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
 
                     };
-            return RunProcedureQueryText("GetModules", parameters).Tables[0];
+            return RunProcedureQuery("GetModules", parameters).Tables[0];
         }
 
         public DataTable GetModuleById(int id)
@@ -21,7 +21,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
                         new SqlParameter("@Id",id),
                     };
-            return RunProcedureQueryText("select * from Module where ModuleId=@Id", parameters).Tables[0];
+            return RunProcedureQuery("select * from Module where ModuleId=@Id", parameters).Tables[0];
         }
 
         public void AddOrEditModule(int moduleId, string moduleName, string description, int courseId)

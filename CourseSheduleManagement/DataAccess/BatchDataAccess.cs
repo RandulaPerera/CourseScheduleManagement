@@ -11,7 +11,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
 
                     };
-            return RunProcedureQueryText("GetBatches", parameters).Tables[0];
+            return RunProcedureQuery("GetBatches", parameters).Tables[0];
         }
 
         public DataTable GetBatchById(int id)

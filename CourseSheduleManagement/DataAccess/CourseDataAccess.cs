@@ -12,7 +12,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
 
                     };
-            return RunProcedureQueryText("GetCourses", parameters).Tables[0];
+            return RunProcedureQuery("GetCourses", parameters).Tables[0];
         }
 
         public DataTable GetCourseById(int id)

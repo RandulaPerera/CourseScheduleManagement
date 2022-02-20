@@ -110,7 +110,6 @@ C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Raz
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Staff\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Staff\Index.cshtml.g.cs
-C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Student\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Student\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
@@ -124,3 +123,5 @@ C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Cou
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\CourseSheduleManagement.genruntimeconfig.cache
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LectureSchedule\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LectureSchedule\Index.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Student\Edit.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Student\AddOrEdit.cshtml.g.cs

@@ -29,14 +29,35 @@
 <table class="table table-bordered">
     <thead class="thead-light">
         <tr>
-            <th>
-                Name
+           <th>
+                First Name
             </th>
             <th>
-                Code
+                Last Name
             </th>
             <th>
-                Description
+                Line1
+            </th>
+            <th>
+                Line2
+            </th>
+            <th>
+                DoB
+            </th>
+            <th>
+                Sex
+            </th>
+            <th>
+                NIC
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Mobile Number
+            </th>
+            <th>
+                Telephone
             </th>
             <th>
                 Action
@@ -57,6 +78,27 @@
                 </td>
                 <td>
                     @Model.Rows[i]["Line1"]
+                </td>
+                <td>
+                    @Model.Rows[i]["Line2"]
+                </td>
+                <td>
+                    @Model.Rows[i]["DoB"]
+                </td>
+                <td>
+                    @Model.Rows[i]["Sex"]
+                </td>
+                <td>
+                    @Model.Rows[i]["NIC"]
+                </td>
+                <td>
+                    @Model.Rows[i]["Email"]
+                </td>
+                <td>
+                    @Model.Rows[i]["MobileNumber"]
+                </td>
+                 <td>
+                    @Model.Rows[i]["Telephone"]
                 </td>
                 <td>
                     <a asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["StudentId"]" class="btn btn-success">Edit</a>

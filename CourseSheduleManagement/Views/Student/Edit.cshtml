@@ -1,7 +1,7 @@
 ﻿@model CourseSheduleManagement.Models.Student
 
 @{
-    ViewData["Title"] = Model.StudentId==0?"Create Student":"Update Student";
+    ViewData["Title"] = "Update Student";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
 <hr />
 <div class="row">
     <div class="col-12">
-        <form asp-action="AddOrEdit" autocomplete="off">
+        <form asp-action="Edit" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="StudentId" />
             <div class="form-group">

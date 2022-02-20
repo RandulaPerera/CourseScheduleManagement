@@ -13,7 +13,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
 
                     };
-            return RunProcedureQueryText("GetStaff", parameters).Tables[0];
+            return RunProcedureQuery("GetStaff", parameters).Tables[0];
         }
 
         public DataTable GetStaffById(int studentId)

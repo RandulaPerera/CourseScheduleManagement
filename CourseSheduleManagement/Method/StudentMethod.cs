@@ -30,7 +30,6 @@ namespace CourseSheduleManagement.Method
                 student.Sex = dt.Rows[0]["Sex"].ToString();
                 student.NIC = dt.Rows[0]["NIC"].ToString();
                 student.Email = dt.Rows[0]["Email"].ToString();
-                student.Password = dt.Rows[0]["Password"].ToString();
                 student.MobileNumber =Convert.ToInt32(dt.Rows[0]["MobileNumber"].ToString());
                 student.Telephone =Convert.ToInt32(dt.Rows[0]["Telephone"].ToString());
                 student.CourseId =Convert.ToInt32(dt.Rows[0]["CourseId"].ToString());
@@ -38,9 +37,19 @@ namespace CourseSheduleManagement.Method
             }
             return student;
         }
-        public void AddOrEditStudent(int studentId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int mobileNuber, int telephone, int courseId, int batchId)
+        public void EditStudent(int studentId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, int mobileNuber, int telephone, int courseId, int batchId)
         {
-            _studentDataAccess.AddOrEditStudent(studentId,firstName,lastName,line1,line2,dob,sex,nic,email,password,mobileNuber,telephone,courseId,batchId);
+            _studentDataAccess.EditStudent(studentId,firstName,lastName,line1,line2,dob,sex,nic,email,mobileNuber,telephone,courseId,batchId);
+        }
+
+        public int AddStudent(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, int courseId, int batchId)
+        {
+            return _studentDataAccess.AddStudent(firstName, lastName, line1, line2, dob, sex, nic, email, courseId, batchId);
+        }
+
+        public void AddStudentMobile(int studentId,int mobileNumber)
+        {
+             _studentDataAccess.AddStudentMobile(studentId, mobileNumber);
         }
 
         public void DeleteStudent(int studentId)
