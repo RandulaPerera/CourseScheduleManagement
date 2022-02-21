@@ -124,3 +124,5 @@ C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Cou
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LectureSchedule\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LectureSchedule\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Student\AddOrEdit.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\ExamSchedule\AddOrEdit.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\ExamSchedule\Index.cshtml.g.cs

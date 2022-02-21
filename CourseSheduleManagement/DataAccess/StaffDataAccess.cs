@@ -22,10 +22,37 @@ namespace CourseSheduleManagement.DataAccess
                     {
                         new SqlParameter("@StaffId",studentId),
                     };
-            return RunProcedureQueryText("select * from Staff where StaffId=@StaffId", parameters).Tables[0];
+            return RunProcedureQuery("GetStaffById", parameters).Tables[0];
         }
 
-        public void AddOrEditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email,string password,int mobileNuber,int telephone,int roleId)
+        public int AddStaff(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            
+            new SqlParameter("@FirstName",firstName),
+            new SqlParameter("@LastName",lastName),
+            new SqlParameter("@Line1",line1),
+            new SqlParameter("@Line2",line2),
+            new SqlParameter("@DoB",dob),
+            new SqlParameter("@Sex",sex),
+            new SqlParameter("@NIC",nic),
+            new SqlParameter("@Email",email)
+            };
+            return int.Parse(RunProcedureScalar("AddStaff", parameters).ToString());
+        }
+
+        public void AddStaffMobile(int staffId, int mobileNuber)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@StaffId",staffId),
+            new SqlParameter("@MobileNumber",mobileNuber)
+            };
+            RunProcedureQuery("AddStaffMobile", parameters);
+        }
+
+        public void EditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, int mobileNuber, int telephone)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -38,12 +65,10 @@ namespace CourseSheduleManagement.DataAccess
             new SqlParameter("@Sex",sex),
             new SqlParameter("@NIC",nic),
             new SqlParameter("@Email",email),
-            new SqlParameter("@Password",password),
             new SqlParameter("@MobileNumber",mobileNuber),
-            new SqlParameter("@Telephone",telephone),
-            new SqlParameter("@RoleId",roleId)
+            new SqlParameter("@Telephone",telephone)
             };
-            RunProcedureQuery("AddorEditStaff", parameters);
+            RunProcedureQuery("EditStaff", parameters);
         }
 
         public void DeleteStaff(int staffId)

@@ -10,7 +10,8 @@ namespace CourseSheduleManagement.Controllers
     public class StaffController : Controller
     {
         StaffMethod _staffMethod = new StaffMethod();
-        
+        CommonMethod _commonMethod = new CommonMethod();
+
         public IActionResult Index()
         {
            
@@ -26,29 +27,46 @@ namespace CourseSheduleManagement.Controllers
             }
         }
 
-        public IActionResult AddOrEdit(int id)
+        public IActionResult AddOrEdit(int id = 0)
         {
+            List<Course> courseList = _commonMethod.GetCourses();
+            ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
 
-            List<Role> roleList = _staffMethod.GetRoles();
-            ViewBag.RoleList=new SelectList(roleList, "RoleId","Name");
 
-            Staff staff = new Staff();
-            if (id > 0)
-                staff = _staffMethod.GetStaffById(id);
-            return View(staff);
-
+            if (id == 0)
+                return View(new Staff());
+            else
+                return View(_staffMethod.GetStaffById(id));
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit(int id, [Bind("StaffId,FirstName,LastName,Line1,Line2,DoB,Sex,NIC,Email,Password,MobileNumber,Telephone,RoleId")] Staff staff)
+        public IActionResult AddOrEdit([Bind("StaffId,FirstName,LastName,Line1,Line2,DoB,Sex,NIC,Email,MobileNumber,Telephone,CourseId,BatchId")] Staff staff)
         {
-            List<Role> roleList = _staffMethod.GetRoles();
-            ViewBag.RoleList=new SelectList(roleList, "RoleId", "Name");
+            List<Course> courseList = _commonMethod.GetCourses();
+            ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
 
             if (ModelState.IsValid)
             {
-                _staffMethod.AddOrEditStaff(staff.StaffId, staff.FirstName, staff.LastName, staff.Line1, staff.Line2, staff.DoB, staff.Sex, staff.NIC, staff.Email, staff.Password, staff.MobileNumber, staff.Telephone, staff.RoleId);
+                if (staff.StaffId == 0)
+                {
+                    int staffId = _staffMethod.AddStaff(staff.FirstName, staff.LastName, staff.Line1, staff.Line2, staff.DoB, staff.Sex, staff.NIC, staff.Email);
+
+                    _staffMethod.AddStaffMobile(staffId, staff.MobileNumber);
+
+                    if (staff.Telephone!=null)
+                    {
+                        _staffMethod.AddStaffMobile(staffId, staff.Telephone);
+
+                    }
+                    // ViewBag.Message = "Student Details Added Successfully";
+                }
+                else
+                {
+                    _staffMethod.EditStaff(staff.StaffId, staff.FirstName, staff.LastName, staff.Line1, staff.Line2, staff.DoB, staff.Sex, staff.NIC, staff.Email, staff.MobileNumber, staff.Telephone);
+
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(staff);

@@ -30,19 +30,25 @@ namespace CourseSheduleManagement.Method
                 staff.Sex = dt.Rows[0]["Sex"].ToString();
                 staff.NIC = dt.Rows[0]["NIC"].ToString();
                 staff.Email = dt.Rows[0]["Email"].ToString();
-                staff.Password = dt.Rows[0]["Password"].ToString();
                 staff.MobileNumber =Convert.ToInt32(dt.Rows[0]["MobileNumber"].ToString());
                 staff.Telephone =Convert.ToInt32(dt.Rows[0]["Telephone"].ToString());
-                staff.RoleId =Convert.ToInt32(dt.Rows[0]["RoleId"].ToString());
                
             }
             return staff;
         }
-        public void AddOrEditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int mobileNuber, int telephone, int roleId)
+        public int AddStaff(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email)
         {
-            _staffDataAccess.AddOrEditStaff(staffId,firstName,lastName,line1,line2,dob,sex,nic,email,password,mobileNuber,telephone, roleId);
+            return _staffDataAccess.AddStaff(firstName,lastName,line1,line2,dob,sex,nic,email);
+        }
+        public void AddStaffMobile(int staffId, int mobileNumber)
+        {
+            _staffDataAccess.AddStaffMobile(staffId, mobileNumber);
         }
 
+        public void EditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, int mobileNuber, int telephone)
+        {
+            _staffDataAccess.EditStaff(staffId, firstName, lastName, line1, line2, dob, sex, nic, email, mobileNuber, telephone);
+        }
         public void DeleteStaff(int staffId)
         {
             _staffDataAccess.DeleteStaff(staffId);

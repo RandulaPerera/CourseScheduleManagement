@@ -1,27 +1,35 @@
 ﻿@model System.Data.DataTable
 @{
-    ViewData["Title"] = "List of Staff";
+    ViewData["Title"] = "List of Exams";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script type="text/javascript">
-
+$(document).ready(function(){
+  ("#examSearch").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#examTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    );
+  });
+});
 </script>
 
 <div class="jumbotron">
     <h1 class="text-center">@ViewData["Title"]</h1>
 </div>
+
 <div>
      <div class="row">
        <div class="col-2">
-            <a asp-action="AddOrEdit" class="btn btn-primary">New Staff</a><br/><br/>
+            <a asp-action="AddOrEdit" class="btn btn-primary">New Exam Schedule</a><br/><br/>
        </div>
        <div class="col-7">
                          
        </div>
        <div class="col-3">
-            <input class="form-control" id="" type="text" placeholder="Search..">
+            <input class="form-control" id="lectureSearch" type="text" placeholder="Search...">
        </div>
     </div>
 </div>
@@ -30,84 +38,69 @@
     <thead class="thead-light">
         <tr>
             <th>
-                First Name
+                Module Name
             </th>
             <th>
-                Last Name
+                Examiner
             </th>
             <th>
-                Line1
+                Course
             </th>
             <th>
-                Line2
+                Batch
             </th>
             <th>
-                DoB
+                Date
             </th>
             <th>
-                Sex
+                Start Time
             </th>
             <th>
-                NIC
+                End Time
             </th>
             <th>
-                Email
-            </th>
-            <th>
-                Mobile Number
-            </th>
-            <th>
-                Telephone
+                Lecture Hall
             </th>
             <th>
                 Action
             </th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="lectureTable">
 
        @for (int i = 0; i < Model.Rows.Count; i++)
         {
 
             <tr>
                 <td>
-                    @Model.Rows[i]["FirstName"]
+                    @Model.Rows[i]["ModuleName"]
                 </td>
                 <td>
-                    @Model.Rows[i]["LastName"]
+                    @Model.Rows[i]["ExaminerName"]
                 </td>
                 <td>
-                    @Model.Rows[i]["Line1"]
+                    @Model.Rows[i]["CourseName"]
                 </td>
                 <td>
-                    @Model.Rows[i]["Line2"]
+                    @Model.Rows[i]["BatchCode"]
                 </td>
                 <td>
-                    @Model.Rows[i]["DoB"]
+                    @Model.Rows[i]["Date"]
                 </td>
                 <td>
-                    @Model.Rows[i]["Sex"]
+                    @Model.Rows[i]["StartTime"]
                 </td>
                 <td>
-                    @Model.Rows[i]["NIC"]
+                    @Model.Rows[i]["EndTime"]
                 </td>
                 <td>
-                    @Model.Rows[i]["Email"]
+                    @Model.Rows[i]["HallName"]
                 </td>
                 <td>
-                    @Model.Rows[i]["MobileNumber"]
-                </td>
-                 <td>
-                    @Model.Rows[i]["Telephone"]
-                </td>
-                 <td>
-                    @Model.Rows[i]["RoleName"]
-                </td>
-                <td>
-                    <a asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["StaffId"]" class="btn btn-success">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@Model.Rows[i]["StaffId"]" class="btn btn-danger">Delete</a>
+                    <a asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["ScheduleId"]" class="btn btn-success">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@Model.Rows[i]["ScheduleId"]" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
-        }     
+        }
     </tbody>
 </table>
