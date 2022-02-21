@@ -2,9 +2,9 @@
 {
     public class Batch
     {
-        public int BatchId { get; set; }
-        public int Year { get; set; }
-        public string BatchCode { get; set; }
-        public int CourseId { get; set; }
+        public int BatchId { get; set; } = 0;
+        public int Year { get; set; } = 0;
+        public string BatchCode { get; set; } = string.Empty;
+        public int CourseId { get; set; } = 0;
     }
 }

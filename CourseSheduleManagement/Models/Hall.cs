@@ -2,7 +2,7 @@
 {
     public class Hall
     {
-        public int HallId { get; set; }
-        public string HallName { get; set; }
+        public int HallId { get; set; } = 0;
+        public string HallName { get; set; } = string.Empty;
     }
 }

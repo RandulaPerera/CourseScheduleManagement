@@ -5,21 +5,21 @@ namespace CourseSheduleManagement.Models
 {
     public class Staff
     {
-        public int StaffId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Line1 { get; set; }
-        public string Line2 { get; set; }
+        public int StaffId { get; set; } = 0;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string Line1 { get; set; } = string.Empty;
+        public string Line2 { get; set; } = string.Empty;
         public DateTime DoB { get; set; }
-        public string Sex { get; set; }
-        public string NIC { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int MobileNumber { get; set; }
-        public int Telephone { get; set; }
-        public int RoleId { get; set; }
+        public string Sex { get; set; } = string.Empty;
+        public string NIC { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public int MobileNumber { get; set; } = 0;
+        public int Telephone { get; set; } = 0;
+        public int RoleId { get; set; } = 0;
 
-        public string FullName { get; set; }
-        
+        public string FullName { get; set; } = string.Empty;
+
     }
 }

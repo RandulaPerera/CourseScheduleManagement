@@ -2,7 +2,7 @@
 {
     public class Role
     {
-        public int RoleId { get; set; }
-        public string Name { get; set; }
+        public int RoleId { get; set; } = 0;
+        public string Name { get; set; } = string.Empty;
     }
 }
