@@ -15,6 +15,13 @@
             <input type="hidden" asp-for="ScheduleId" />
             <div class="form-group">
                  <div class="row">
+                     <div class="col-4">
+                        <label class="control-label">Course</label>    
+                        <select id="selectCourseId" asp-for="CourseId" asp-items="ViewBag.CourseList as SelectList" class="form-control" onchange="getBatches();">
+                             <option selected>-- Select Course --</option>
+                        </select>
+                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                    </div>
                     <div class="col-4">
                         <label class="control-label">Batch</label>    
                         <select id="selectBatchId" asp-for="BatchId" class="form-control"></select>
@@ -22,25 +29,35 @@
                     </div>
                     <div class="col-4">
                         <label class="control-label">Module</label>    
-                        <select id="selectModuleId" asp-for="ModuleId" class="form-control"></select>
+                        <select id="selectModuleId" asp-for="ModuleId" asp-items="ViewBag.ModuleList as SelectList" class="form-control">
+                             <option selected>-- Select Module --</option>
+                        </select>
                         <span asp-validation-for="ModuleId" class="text-danger"></span>
-                    </div>
-                    <div class="col-4">
-                        <label class="control-label">Hall</label>    
-                        <select id="selectHallId" asp-for="HallId" class="form-control"></select>
-                        <span asp-validation-for="HallId" class="text-danger"></span>
                     </div>
                  </div>
                   <div class="row">
-                    <div class="col-6">
-                        <label class="control-label">Lecture Type</label>    
-                        <select id="selectLectureType" asp-for="Type" class="form-control"></select>
-                        <span asp-validation-for="Type" class="text-danger"></span>
+                     <div class="col-4">
+                        <label class="control-label">Hall</label>    
+                        <select id="selectHallId" asp-for="HallId" asp-items="ViewBag.HallList as SelectList" class="form-control">
+                             <option selected>-- Select Hall --</option>
+                        </select>
+                        <span asp-validation-for="HallId" class="text-danger"></span>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
+                        <label class="control-label">Lecture Type</label>    
+                        <select id="selectLectureType" asp-for="LectureType" class="form-control">
+                            <option value="0" selected>-- Select Lecture Type --</option>
+                            <option value="Lecture" selected>Lecture</option>
+                            <option value="Practical" selected>Practical</option>
+                        </select>
+                        <span asp-validation-for="LectureType" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
                         <label class="control-label">Lecturer</label>    
-                        <select id="selectLecturerId" asp-for="LecturerBy" class="form-control"></select>
-                        <span asp-validation-for="LecturerBy" class="text-danger"></span>
+                        <select id="selectLecturerId" asp-for="StaffId" asp-items="ViewBag.StaffList as SelectList" class="form-control">
+                             <option selected>-- Select Lecturer --</option>
+                        </select>
+                        <span asp-validation-for="StaffId" class="text-danger"></span>
                     </div>
                  </div>
                   <div class="row">
@@ -84,14 +101,18 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script type="text/javascript">
       
-        //$('#coursename').keyup(function() {
-            
-        //     var input = $("#coursename").val();
-        //     let acronym = input.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'').toUpperCase();
+    document.getElementById("date").value = new Date();
 
-        //     $('#coursecode').val(acronym); 
-
-        //});
+    function getBatches() {   
+      
+        $.get("/Student/GetBatchList",{ courseId:$('#selectCourseId').val() },function(data){
+            $("#selectBatchId").empty();
+            $("#selectBatchId").append("<option selected value=''>-- Select Batch --</option>");           
+            $.each(data,function(index,row){
+                $("#selectBatchId").append("<option value='"+row.batchId+"'>"+row.batchCode+"</option>");
+            });
+        });
+}
               
 </script>
 }

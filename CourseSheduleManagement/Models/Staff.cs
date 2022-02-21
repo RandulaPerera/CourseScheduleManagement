@@ -18,5 +18,8 @@ namespace CourseSheduleManagement.Models
         public int MobileNumber { get; set; }
         public int Telephone { get; set; }
         public int RoleId { get; set; }
+
+        public string FullName { get; set; }
+        
     }
 }

@@ -55,11 +55,11 @@ namespace CourseSheduleManagement.Controllers
 
                     _studentMethod.AddStudentMobile(studentId, student.MobileNumber);
 
-                    //if (student.Telephone!=0)
-                    //{
-                            //_studentMethod.AddStudentMobile(studentId, student.Telephone);
+                    if (student.Telephone!=null)
+                    {
+                            _studentMethod.AddStudentMobile(studentId, student.Telephone);
 
-                    //}
+                    }
                     // ViewBag.Message = "Student Details Added Successfully";
                 }
                 else {

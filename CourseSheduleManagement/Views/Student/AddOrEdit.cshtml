@@ -129,6 +129,9 @@
      @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script type="text/javascript">
 
+
+    
+
 function getBatches() {   
       
         $.get("/Student/GetBatchList",{ courseId:$('#selectCourseId').val() },function(data){

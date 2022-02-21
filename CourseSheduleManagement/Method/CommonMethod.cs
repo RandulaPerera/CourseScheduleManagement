@@ -38,5 +38,47 @@ namespace CourseSheduleManagement.Method
             }
             return list;
         }
+
+        public List<Hall> GetHalls()
+        {
+            DataTable dt = _commonDataAccess.GetHalls();
+            var list = new List<Hall>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Hall hall = new Hall();
+                hall.HallId = Convert.ToInt32(dt.Rows[i]["HallId"]);
+                hall.HallName = dt.Rows[i]["HallName"].ToString();
+                list.Add(hall);
+            }
+            return list;
+        }
+
+        public List<Module> GetModules()
+        {
+            DataTable dt = _commonDataAccess.GetModules();
+            var list = new List<Module>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Module module = new Module();
+                module.ModuleId = Convert.ToInt32(dt.Rows[i]["ModuleId"]);
+                module.ModuleName = dt.Rows[i]["ModuleName"].ToString();
+                list.Add(module);
+            }
+            return list;
+        }
+
+        public List<Staff> GetStaff()
+        {
+            DataTable dt = _commonDataAccess.GetStaff();
+            var list = new List<Staff>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Staff staff = new Staff();
+                staff.StaffId = Convert.ToInt32(dt.Rows[i]["StaffId"]);
+                staff.FullName = dt.Rows[i]["FullName"].ToString();
+                list.Add(staff);
+            }
+            return list;
+        }
     }
 }

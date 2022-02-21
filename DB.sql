@@ -40,7 +40,6 @@ create table Student(StudentId int Identity(1,1) NOT NULL,
 
 create table StudentMobileNumber(StudentId int NOT NULL,
       MobileNumber int NOT NULL,
-	  Constraint [PK_StudentMobileNumber] Primary Key Clustered ([StudentId] ASC),
 	  Constraint [FK_Student] Foreign Key ([StudentId]) References [dbo].[Student] ([StudentId]));
 
 create table Module(ModuleId int Identity(1,1) NOT NULL,
@@ -84,15 +83,15 @@ create table Schedule(ScheduleId int Identity(1,1) NOT NULL,
 	  Constraint [FK_Schedule_Module] Foreign Key ([ModuleId]) References [dbo].[Module] ([ModuleId]));
 
 
-create table Lecture(LectureeId int NOT NULL,
+create table Lecture(LectureId int Identity(1,1) NOT NULL,
       StaffId int NOT NULL,
 	  ScheduleId int NOT NULL,
 	  LectureType varchar(10) NOT NULL,
-	  Constraint [PK_Lecture] Primary Key Clustered ([LectureeId] ASC),
+	  Constraint [PK_Lecture] Primary Key Clustered ([LectureId] ASC),
 	  Constraint [FK_Lecture_Schedule] Foreign Key ([ScheduleId]) References [dbo].[Schedule] ([ScheduleId]),
 	  Constraint [FK_Lecture_Staff] Foreign Key ([StaffId]) References [dbo].[Staff] ([StaffId]));
 
-create table Exam(ExamId int NOT NULL,
+create table Exam(ExamId int Identity(1,1) NOT NULL,
 	  StaffId int NOT NULL,
 	  ScheduleId int NOT NULL,
 	  Constraint [PK_Exam] Primary Key Clustered ([ExamId] ASC),

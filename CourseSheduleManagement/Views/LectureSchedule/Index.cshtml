@@ -38,6 +38,21 @@ $(document).ready(function(){
     <thead class="thead-light">
         <tr>
             <th>
+                Module Name
+            </th>
+            <th>
+                Lecturer
+            </th>
+            <th>
+                Course
+            </th>
+            <th>
+                Batch
+            </th>
+            <th>
+                Lecture Type
+            </th>
+            <th>
                 Date
             </th>
             <th>
@@ -45,6 +60,9 @@ $(document).ready(function(){
             </th>
             <th>
                 End Time
+            </th>
+            <th>
+                Lecture Hall
             </th>
             <th>
                 Action
@@ -58,6 +76,21 @@ $(document).ready(function(){
 
             <tr>
                 <td>
+                    @Model.Rows[i]["ModuleName"]
+                </td>
+                <td>
+                    @Model.Rows[i]["LecturerName"]
+                </td>
+                <td>
+                    @Model.Rows[i]["CourseName"]
+                </td>
+                <td>
+                    @Model.Rows[i]["BatchCode"]
+                </td>
+                <td>
+                    @Model.Rows[i]["LectureType"]
+                </td>
+                <td>
                     @Model.Rows[i]["Date"]
                 </td>
                 <td>
@@ -65,6 +98,9 @@ $(document).ready(function(){
                 </td>
                 <td>
                     @Model.Rows[i]["EndTime"]
+                </td>
+                <td>
+                    @Model.Rows[i]["HallName"]
                 </td>
                 <td>
                     <a asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["ScheduleId"]" class="btn btn-success">Edit</a>

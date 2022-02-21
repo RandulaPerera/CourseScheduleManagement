@@ -22,5 +22,32 @@ namespace CourseSheduleManagement.DataAccess
                     };
             return RunProcedureQueryText("select * from Batch where CourseId=@Id", parameters).Tables[0];
         }
+
+        public DataTable GetHalls()
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+
+                    };
+            return RunProcedureQueryText("select * from Hall where Active=1", parameters).Tables[0];
+        }
+
+        public DataTable GetModules()
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+
+                    };
+            return RunProcedureQueryText("select * from Module where Active=1", parameters).Tables[0];
+        }
+
+        public DataTable GetStaff()
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+
+                    };
+            return RunProcedureQueryText("select StaffId,(FirstName+' '+LastName) as FullName from Staff where Active=1", parameters).Tables[0];
+        }
     }
 }

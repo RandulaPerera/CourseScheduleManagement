@@ -12,19 +12,46 @@ namespace CourseSheduleManagement.DataAccess
                     {
 
                     };
-            return RunProcedureQueryText("GetLectures", parameters).Tables[0];
+            return RunProcedureQuery("GetLectures", parameters).Tables[0];
         }
 
-        public DataTable GetLectureById(int id)
+        public DataTable GetLectureById(int scheduleId)
         {
             SqlParameter[] parameters = new SqlParameter[]
                     {
-                        new SqlParameter("@Id",id),
+                        new SqlParameter("@ScheduleId",scheduleId),
                     };
-            return RunProcedureQueryText("GetLectureById", parameters).Tables[0];
+            return RunProcedureQuery("GetLectureById", parameters).Tables[0];
         }
 
-        public void AddOrEditLecture(int scheduleId, DateTime date, DateTime startTime, DateTime endTime, int hallId, int batchId, int moduleId, int lectureBy, string type)
+        public int AddSchedule(DateTime date, DateTime startTime, DateTime endTime, int courseId, int hallId, int batchId, int moduleId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            
+            new SqlParameter("@Date",date),
+            new SqlParameter("@StartTime",startTime),
+            new SqlParameter("@EndTime",endTime),
+            new SqlParameter("@CourseId",courseId),
+            new SqlParameter("@HallId",hallId),
+            new SqlParameter("@BatchId",batchId),
+            new SqlParameter("@ModuleId",moduleId)
+            };
+            return int.Parse(RunProcedureScalar("AddSchedule", parameters).ToString());
+        }
+
+        public void AddLecture(int scheduleId,int staffId,string lectureType)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@ScheduleId",scheduleId),
+            new SqlParameter("@StaffId",staffId),
+            new SqlParameter("@LectureType",lectureType)
+            };
+            RunProcedureQuery("AddLecture", parameters);
+        }
+
+        public void EditSchedule(int scheduleId,DateTime date, DateTime startTime, DateTime endTime, int courseId, int hallId, int batchId, int moduleId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -32,13 +59,23 @@ namespace CourseSheduleManagement.DataAccess
             new SqlParameter("@Date",date),
             new SqlParameter("@StartTime",startTime),
             new SqlParameter("@EndTime",endTime),
+            new SqlParameter("@CourseId",courseId),
             new SqlParameter("@HallId",hallId),
             new SqlParameter("@BatchId",batchId),
-            new SqlParameter("@ModuleId",moduleId),
-            new SqlParameter("@LectureBy",lectureBy),
-            new SqlParameter("@Type",type)
+            new SqlParameter("@ModuleId",moduleId)
             };
-            RunProcedureQuery("AddorEditLecture", parameters);
+            RunProcedureQuery("EditSchedule", parameters);
+        }
+
+        public void EditLecture(int scheduleId,int staffId, string lectureType)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@ScheduleId",scheduleId),
+            new SqlParameter("@StaffId",staffId),
+            new SqlParameter("@LectureType",lectureType)
+            };
+            RunProcedureQuery("EditLecture", parameters);
         }
 
         public void DeleteLecture(int scheduleId)
