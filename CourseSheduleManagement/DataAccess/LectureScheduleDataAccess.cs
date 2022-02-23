@@ -37,7 +37,7 @@ namespace CourseSheduleManagement.DataAccess
             new SqlParameter("@BatchId",batchId),
             new SqlParameter("@ModuleId",moduleId)
             };
-            return int.Parse(RunProcedureScalar("AddSchedule", parameters).ToString());
+            return int.Parse(RunProcedureScalar("AddScheduleLecture", parameters).ToString());
         }
 
         public void AddLecture(int scheduleId,int staffId,string lectureType)
