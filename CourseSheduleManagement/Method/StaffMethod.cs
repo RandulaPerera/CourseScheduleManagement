@@ -30,24 +30,24 @@ namespace CourseSheduleManagement.Method
                 staff.Sex = dt.Rows[0]["Sex"].ToString();
                 staff.NIC = dt.Rows[0]["NIC"].ToString();
                 staff.Email = dt.Rows[0]["Email"].ToString();
-                staff.MobileNumber =Convert.ToInt32(dt.Rows[0]["MobileNumber"].ToString());
-                staff.Telephone =Convert.ToInt32(dt.Rows[0]["Telephone"].ToString());
-               
+                staff.Password = dt.Rows[0]["Password"].ToString();
+                staff.RoleId = Convert.ToInt32(dt.Rows[0]["RoleId"].ToString());
+
             }
             return staff;
         }
-        public int AddStaff(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email)
+        public int AddStaff(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email,string password,int roleId)
         {
-            return _staffDataAccess.AddStaff(firstName,lastName,line1,line2,dob,sex,nic,email);
+            return _staffDataAccess.AddStaff(firstName,lastName,line1,line2,dob,sex,nic,email,password,roleId);
         }
         public void AddStaffMobile(int staffId, int mobileNumber)
         {
             _staffDataAccess.AddStaffMobile(staffId, mobileNumber);
         }
 
-        public void EditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, int mobileNuber, int telephone)
+        public void EditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int roleId)
         {
-            _staffDataAccess.EditStaff(staffId, firstName, lastName, line1, line2, dob, sex, nic, email, mobileNuber, telephone);
+            _staffDataAccess.EditStaff(staffId, firstName, lastName, line1, line2, dob, sex, nic, email, password, roleId);
         }
         public void DeleteStaff(int staffId)
         {
@@ -62,7 +62,7 @@ namespace CourseSheduleManagement.Method
             {
                 Role role = new Role();
                 role.RoleId = Convert.ToInt32(dt.Rows[i]["RoleId"]);
-                role.Name = dt.Rows[i]["Name"].ToString();
+                role.RoleName = dt.Rows[i]["RoleName"].ToString();
                 list.Add(role);
             }
             return list;

@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = Model.StudentId==0?"Create Student":"Update Student";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 
@@ -42,12 +42,12 @@
                     </div>
                  </div>
                  <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <label class="control-label">Date of Birth</label>
                         <input asp-for="DoB" type="date" class="form-control" />
                         <span asp-validation-for="DoB" class="text-danger"></span>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <label class="control-label">Sex</label>
                         <div class="row">
                             <div class="col-1">
@@ -64,22 +64,10 @@
                             <span asp-validation-for="Sex" class="text-danger"></span>
                         </div>
                     </div>
-                 </div>
-                 <div class="row">
-                    <div class="col-4">
+                     <div class="col-4">
                         <label class="control-label">NIC</label>
                         <input asp-for="NIC" class="form-control" />
                         <span asp-validation-for="NIC" class="text-danger"></span>
-                    </div>
-                    <div class="col-4">
-                        <label class="control-label">Mobile Number</label>
-                        <input asp-for="MobileNumber" class="form-control" />
-                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
-                    </div>
-                    <div class="col-4">
-                        <label class="control-label">Telephone</label>
-                        <input asp-for="Telephone" class="form-control" />
-                        <span asp-validation-for="Telephone" class="text-danger"></span>
                     </div>
                  </div>
                  <div class="row">
@@ -88,7 +76,11 @@
                         <input asp-for="Email" class="form-control" /><br/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
-                    
+                     <div class="col-6">
+                        <label class="control-label">Password</label>
+                        <input asp-for="Password" class="form-control" /><br/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
                  </div>
                   <div class="row">
                     <div class="col-6">
@@ -104,11 +96,18 @@
                         <span asp-validation-for="BatchId" class="text-danger"></span>
                     </div>
                  </div>
+                 <div class="row">
+                         <div class="col-6">
+                              <label class="control-label">Contact Number</label>
+                              <input type="text"  asp-for="Contacts" name="Contacts[]" class="form-control"><br/>
+                              <button type="button" class="addContacts">+</button>
+                         </div>
+                 </div>
             </div>
             <div class="form-group">
                  <div class="row">
                     <div class="col-1">
-                         <input type="submit" value="Save" class="btn btn-primary" />
+                         <input type="submit" value="Save" class="btn btn-primary" onclick="GetContacts();"/>
                     </div>
                     <div class="col-2">
                          <a asp-action="Index" class="btn btn-secondary">Back to List</a>
@@ -127,8 +126,24 @@
      @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script type="text/javascript">
 
+        $("button.addContacts").on("click", function(e) {
+       
+                    var html = '<label class="control-label">Contact Number</label>';
+                    html += '<input type="text" asp-for="Contacts" name="Contacts[]" class="form-control"><br/>';
+                    $(this).before(html);  
+        });
 
-    
+        const contact_numbers = [];           
+        function GetContacts() {
+            var input = document.getElementsByName('Contacts[]');
+  
+            for (var i = 0; i < input.length; i++) {
+               
+                contact_numbers.push(input[i].value);
+            }
+        }
+
+      
 
 function getBatches() {   
       

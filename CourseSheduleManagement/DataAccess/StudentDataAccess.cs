@@ -25,7 +25,7 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQuery("GetStudentById", parameters).Tables[0];
         }
 
-        public int AddStudent(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, int courseId, int batchId)
+        public int AddStudent(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int courseId, int batchId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -38,6 +38,7 @@ namespace CourseSheduleManagement.DataAccess
             new SqlParameter("@Sex",sex),
             new SqlParameter("@NIC",nic),
             new SqlParameter("@Email",email),
+            new SqlParameter("@Password",password),
             new SqlParameter("@CourseId",courseId),
             new SqlParameter("@BatchId",batchId)
             };
@@ -54,7 +55,7 @@ namespace CourseSheduleManagement.DataAccess
             RunProcedureQuery("AddStudentMobile", parameters);
         }
 
-        public void EditStudent(int studentId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, int mobileNuber, int telephone, int courseId, int batchId)
+        public void EditStudent(int studentId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int courseId, int batchId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -67,8 +68,7 @@ namespace CourseSheduleManagement.DataAccess
             new SqlParameter("@Sex",sex),
             new SqlParameter("@NIC",nic),
             new SqlParameter("@Email",email),
-            new SqlParameter("@MobileNumber",mobileNuber),
-            new SqlParameter("@Telephone",telephone),
+            new SqlParameter("@Password",password),
             new SqlParameter("@CourseId",courseId),
             new SqlParameter("@BatchId",batchId)
             };

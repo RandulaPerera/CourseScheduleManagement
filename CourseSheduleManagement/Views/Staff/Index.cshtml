@@ -1,7 +1,7 @@
 ﻿@model System.Data.DataTable
 @{
     ViewData["Title"] = "List of Staff";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
@@ -54,10 +54,7 @@
                 Email
             </th>
             <th>
-                Mobile Number
-            </th>
-            <th>
-                Telephone
+                User Role
             </th>
             <th>
                 Action
@@ -93,12 +90,6 @@
                 </td>
                 <td>
                     @Model.Rows[i]["Email"]
-                </td>
-                <td>
-                    @Model.Rows[i]["MobileNumber"]
-                </td>
-                 <td>
-                    @Model.Rows[i]["Telephone"]
                 </td>
                  <td>
                     @Model.Rows[i]["RoleName"]

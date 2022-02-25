@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CourseSheduleManagement.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<AdminController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public AdminController(ILogger<AdminController> logger)
         {
             _logger = logger;
         }

@@ -1,0 +1,61 @@
+﻿@model CourseSheduleManagement.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Login" autocomplete="off" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                 <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Email</label>
+                        <input id="year" asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                 </div>
+                  <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Password</label>
+                        <input id="batchcode" asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                 </div>
+                 <div class="row">
+                  <div class="col-6">
+                        <label class="control-label">User Type</label>
+                          <select id="usertype" asp-for="UserType" class="form-control">
+                            <option value="0" selected>-- Select User Type --</option>
+                            <option value="Student">Student</option>
+                            <option value="Staff">Staff</option>
+                        </select>
+                        <span asp-validation-for="UserType" class="text-danger"></span>
+                    </div>
+                 </div>
+            </div>
+            <div class="form-group">
+                 <div class="row">
+                    <div class="col-1">
+                         <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+                 </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+     
+ 
+
+</script>
+}

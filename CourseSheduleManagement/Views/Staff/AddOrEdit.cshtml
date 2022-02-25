@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = Model.StaffId==0?"Create Staff":"Update Staff";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+   Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 
@@ -68,20 +68,17 @@
                     </div>
                  </div>
                  <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <label class="control-label">NIC</label>
                         <input asp-for="NIC" class="form-control" />
                         <span asp-validation-for="NIC" class="text-danger"></span>
                     </div>
-                    <div class="col-4">
-                        <label class="control-label">Mobile Number</label>
-                        <input asp-for="MobileNumber" class="form-control" />
-                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
-                    </div>
-                    <div class="col-4">
-                        <label class="control-label">Telephone</label>
-                        <input asp-for="Telephone" class="form-control" />
-                        <span asp-validation-for="Telephone" class="text-danger"></span>
+                     <div class="col-6">
+                        <label class="control-label">Role</label>
+                        <select id="selectroleid" asp-for="RoleId" asp-items="ViewBag.RoleList as SelectList" class="form-control">
+                            <option selected>-- Select Role --</option>
+                        </select>
+                        <span asp-validation-for="RoleId" class="text-danger"></span>
                     </div>
                  </div>
                  <div class="row">
@@ -90,8 +87,10 @@
                         <input asp-for="Email" class="form-control" /><br/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
-                    <div class="col-6">
-                        
+                     <div class="col-6">
+                        <label class="control-label">Password</label>
+                        <input asp-for="Password" class="form-control" /><br/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                  </div>
             </div>

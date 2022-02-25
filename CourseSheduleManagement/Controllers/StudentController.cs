@@ -42,7 +42,7 @@ namespace CourseSheduleManagement.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit([Bind("StudentId,FirstName,LastName,Line1,Line2,DoB,Sex,NIC,Email,MobileNumber,Telephone,CourseId,BatchId")] Student student)
+        public IActionResult AddOrEdit([Bind("StudentId,FirstName,LastName,Line1,Line2,DoB,Sex,NIC,Email,Password,CourseId,BatchId")] Student student)
         {
             List<Course> courseList = _commonMethod.GetCourses();
             ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
@@ -51,19 +51,20 @@ namespace CourseSheduleManagement.Controllers
             {
                 if (student.StudentId == 0)
                 {
-                    int studentId = _studentMethod.AddStudent(student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email, student.CourseId, student.BatchId);
+                    int studentId = _studentMethod.AddStudent(student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email,student.Password, student.CourseId, student.BatchId);
 
-                    _studentMethod.AddStudentMobile(studentId, student.MobileNumber);
+                    //System.Collections.IList list = student.Contacts;
+                    //for (int i = 0; i<list.Count; i++)
+                    //{
+                    //    int ch = (int)list[i];
+                    //    _studentMethod.AddStudentMobile(studentId, ch);
+                    //}
+                    //
 
-                    if (student.Telephone!=null)
-                    {
-                            _studentMethod.AddStudentMobile(studentId, student.Telephone);
 
-                    }
-                    // ViewBag.Message = "Student Details Added Successfully";
                 }
                 else {
-                    _studentMethod.EditStudent(student.StudentId, student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email, student.MobileNumber, student.Telephone, student.CourseId, student.BatchId);
+                    _studentMethod.EditStudent(student.StudentId, student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email,student.Password, student.CourseId, student.BatchId);
 
                 }
                 return RedirectToAction(nameof(Index));

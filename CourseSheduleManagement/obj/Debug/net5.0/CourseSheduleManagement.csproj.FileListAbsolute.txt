@@ -101,12 +101,9 @@ C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Raz
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Batch\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Course\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Course\Index.cshtml.g.cs
-C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Module\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Module\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
-C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Staff\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Staff\Index.cshtml.g.cs
@@ -126,3 +123,11 @@ C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Raz
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Student\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\ExamSchedule\AddOrEdit.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\ExamSchedule\Index.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LecturerView\Index.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\StudentView\Index.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_LecturerLayout.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_StudentLayout.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_LoginLayout.cshtml.g.cs

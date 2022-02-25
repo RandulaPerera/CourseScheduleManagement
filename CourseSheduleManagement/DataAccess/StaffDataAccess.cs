@@ -25,7 +25,7 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQuery("GetStaffById", parameters).Tables[0];
         }
 
-        public int AddStaff(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email)
+        public int AddStaff(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email,string password,int roleId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -37,7 +37,9 @@ namespace CourseSheduleManagement.DataAccess
             new SqlParameter("@DoB",dob),
             new SqlParameter("@Sex",sex),
             new SqlParameter("@NIC",nic),
-            new SqlParameter("@Email",email)
+            new SqlParameter("@Email",email),
+            new SqlParameter("@Password",password),
+            new SqlParameter("@RoleId",roleId)
             };
             return int.Parse(RunProcedureScalar("AddStaff", parameters).ToString());
         }
@@ -52,7 +54,7 @@ namespace CourseSheduleManagement.DataAccess
             RunProcedureQuery("AddStaffMobile", parameters);
         }
 
-        public void EditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, int mobileNuber, int telephone)
+        public void EditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int roleId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -65,8 +67,8 @@ namespace CourseSheduleManagement.DataAccess
             new SqlParameter("@Sex",sex),
             new SqlParameter("@NIC",nic),
             new SqlParameter("@Email",email),
-            new SqlParameter("@MobileNumber",mobileNuber),
-            new SqlParameter("@Telephone",telephone)
+            new SqlParameter("@Password",password),
+            new SqlParameter("@RoleId",roleId)
             };
             RunProcedureQuery("EditStaff", parameters);
         }
@@ -87,7 +89,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
 
                     };
-            return RunProcedureQueryText("select * from UserRole where IsDelete=0", parameters).Tables[0];
+            return RunProcedureQueryText("select * from Role where Active=1", parameters).Tables[0];
         }
     }
 }
