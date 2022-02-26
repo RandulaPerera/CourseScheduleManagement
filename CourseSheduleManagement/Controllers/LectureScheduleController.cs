@@ -106,5 +106,7 @@ namespace CourseSheduleManagement.Controllers
             List<Batch> batchList = _commonMethod.GetBatchByCourseId(courseId);
             return Json(batchList);
         }
+
+        
     }
 }

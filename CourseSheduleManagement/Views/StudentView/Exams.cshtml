@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CourseSheduleManagement.Models.Exam>
+@{
+    ViewData["Title"] = "Exams";
+     Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>Exam Schedule</h1><br/>
+   
+        <div class="row">
+                    <div class="col-3">
+                        <label class="control-label">Search By Date</label>    
+                    </div>
+                    <div class="col-4">
+                        <input id="date" id="date" type="date"  class="form-control"/>
+                    </div>
+                     <div class="col-3">
+                        <input type="button" value="Search" class="btn btn-primary" onclick="GetExams();"/><br/><br/>
+                    </div>
+        </div>
+  
+
+    <table id="tblExams" class="table table-striped">
+        <tr>
+            <th>Module Name</th>
+            <th>Lecturer Name</th>
+            <th>Course Name</th>
+            <th>Batch Code</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Hall Name</th>
+        </tr>
+    </table>
+ 
+    <script type="text/javascript">
+        
+        function GetExams() {
+
+             $.get("/StudentView/SearchExamsByDate",{ date:$('#date').val()},function(exams){
+                    
+                    var table = $("#tblExams");
+                    table.find("tr:not(:first)").remove();
+                    $.each(exams, function (i, exam) {
+                        var table = $("#tblExams");
+                        var row = table[0].insertRow(-1);
+
+                        $(row).append("<td />");
+                        $(row).find("td").eq(0).html(exam.moduleName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(1).html(exam.lecturerName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(2).html(exam.courseName);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(3).html(exam.batchCode);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(4).html(exam.retrieveDate);         
+                        $(row).append("<td />");
+                        $(row).find("td").eq(5).html(exam.retrieveStartTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(6).html(exam.retrieveEndTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(7).html(exam.hallName);
+                    });          
+            
+            });
+           
+        }
+    </script>
+

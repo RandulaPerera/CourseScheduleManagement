@@ -125,7 +125,6 @@ C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Raz
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\ExamSchedule\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
-C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LecturerView\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\StudentView\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_LecturerLayout.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\Shared\_StudentLayout.cshtml.g.cs
@@ -207,4 +206,8 @@ C:\Project\CourseScheduleManagement\CourseSheduleManagement\bin\Debug\net5.0\zh-
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
-C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\StudentView\SearchByDate.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\StudentView\Lectures.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LecturerView\Exams.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LecturerView\Index.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LecturerView\Lectures.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\StudentView\Exams.cshtml.g.cs

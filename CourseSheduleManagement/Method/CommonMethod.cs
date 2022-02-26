@@ -83,9 +83,9 @@ namespace CourseSheduleManagement.Method
             return list;
         }
 
-        public List<Lecture> SearchByDate(DateTime date)
+        public List<Lecture> SearchLecturesByDate(DateTime date)
         {
-            DataTable dt = _commonDataAccess.SearchByDate(date);
+            DataTable dt = _commonDataAccess.SearchLecturesByDate(date);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Lecture()
@@ -103,34 +103,30 @@ namespace CourseSheduleManagement.Method
                         }).ToList();
 
             return list;
-            //var list = new List<Lecture>();
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-            //    Lecture lecture = new Lecture();
-            //    lecture.ScheduleId =Convert.ToInt32(dt.Rows[0]["ScheduleId"].ToString());
-            //    lecture.RetrieveDate = dt.Rows[0]["Date"].ToString();
-            //    lecture.RetrieveStartTime = dt.Rows[0]["StartTime"].ToString();
-            //    lecture.RetrieveEndTime = dt.Rows[0]["EndTime"].ToString();
-            //    lecture.CourseName = dt.Rows[0]["CourseName"].ToString();
-            //    lecture.HallName = dt.Rows[0]["HallName"].ToString();
-            //    lecture.BatchCode = dt.Rows[0]["BatchCode"].ToString();
-            //    lecture.ModuleName = dt.Rows[0]["ModuleName"].ToString();
-            //    lecture.LecturerName = dt.Rows[0]["LecturerName"].ToString();
-            //    lecture.LectureType =  dt.Rows[0]["LectureType"].ToString();
-            //    list.Add(lecture);
-            //}
-            //return list;
-
 
         }
 
-        //public DataTable SearchByDate(DateTime date)
-        //{
-        //    DataTable dt = _commonDataAccess.SearchByDate(date);
+        public List<Exam> SearchExamsByDate(DateTime date)
+        {
+            DataTable dt = _commonDataAccess.SearchExamsByDate(date);
 
-        //    return dt;
+            var list = (from dr in dt.AsEnumerable()
+                        select new Exam()
+                        {
+                            ScheduleId = dr.GetValue<int>("ScheduleId"),
+                            RetrieveDate = dr.GetValue<string>("Date"),
+                            RetrieveStartTime = dr.GetValue<string>("StartTime"),
+                            RetrieveEndTime = dr.GetValue<string>("EndTime"),
+                            CourseName = dr.GetValue<string>("CourseName"),
+                            HallName = dr.GetValue<string>("HallName"),
+                            BatchCode = dr.GetValue<string>("BatchCode"),
+                            ModuleName = dr.GetValue<string>("ModuleName"),
+                            LecturerName = dr.GetValue<string>("LecturerName")
+                        }).ToList();
 
+            return list;
 
-        //}
+        }
+
     }
 }

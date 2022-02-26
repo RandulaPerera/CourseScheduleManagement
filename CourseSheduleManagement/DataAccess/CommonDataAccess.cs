@@ -51,13 +51,22 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQueryText("select StaffId,(FirstName+' '+LastName) as FullName from Staff where Active=1", parameters).Tables[0];
         }
 
-        public DataTable SearchByDate(DateTime date)
+        public DataTable SearchLecturesByDate(DateTime date)
         {
             SqlParameter[] parameters = new SqlParameter[]
                     {
                         new SqlParameter("@Date",date),
                     };
-            return RunProcedureQuery("SearchByDate", parameters).Tables[0];
+            return RunProcedureQuery("SearchLecturesByDate", parameters).Tables[0];
+        }
+
+        public DataTable SearchExamsByDate(DateTime date)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@Date",date),
+                    };
+            return RunProcedureQuery("SearchExamsByDate", parameters).Tables[0];
         }
     }
 }
