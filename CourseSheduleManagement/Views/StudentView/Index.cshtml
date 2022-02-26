@@ -1,21 +1,109 @@
 ﻿@model IEnumerable<CourseSheduleManagement.Models.Lecture>
-
 @{
     ViewData["Title"] = "Index";
      Layout = "~/Views/Shared/_StudentLayout.cshtml";
 }
 
-<h1>LectureSchedule</h1>
-    @using (Html.BeginForm("SearchByDate", "StudentView", FormMethod.Get))
-    {
+<h1>Lecture Schedule</h1><br/>
+   
         <div class="row">
+                    <div class="col-3">
+                        <label class="control-label">Search By Date</label>    
+                    </div>
                     <div class="col-4">
-                        <label class="control-label">Date</label>    
-                        <input id="date" name="date" type="date"  class="form-control"/>
+                        <input id="date" id="date" type="date"  class="form-control"/>
                     </div>
                      <div class="col-3">
-                        <input type="submit" value="Search" class="btn btn-primary"/>
+                        <input type="button" value="Search" class="btn btn-primary" onclick="GetLectures();"/><br/><br/>
                     </div>
         </div>
+  
+
+    <table id="tblLectures" class="table table-striped">
+        <tr>
+            <th>Module Name</th>
+            <th>Lecturer Name</th>
+            <th>Lecture Type</th>
+            <th>Course Name</th>
+            <th>Batch Code</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Hall Name</th>
+        </tr>
+    </table>
+ 
+    <script type="text/javascript">
         
-    }
+        function GetLectures() {
+
+             $.get("/StudentView/SearchByDate",{ date:$('#date').val()},function(lectures){
+                    
+                   debugger;
+                    var table = $("#tblLectures");
+                    table.find("tr:not(:first)").remove();
+                    $.each(lectures, function (i, lecture) {
+                        var table = $("#tblLectures");
+                        var row = table[0].insertRow(-1);
+
+                         alert(lecture.ModuleName);
+
+                        $(row).append("<td />");
+                        $(row).find("td").eq(0).html(lecture.moduleName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(1).html(lecture.lecturerName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(2).html(lecture.lectureType);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(3).html(lecture.courseName);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(4).html(lecture.batchCode);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(5).html(lecture.retrieveDate);         
+                        $(row).append("<td />");
+                        $(row).find("td").eq(6).html(lecture.retrieveStartTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(7).html(lecture.retrieveEndTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(8).html(lecture.hallName);
+                    });          
+            
+            });
+            //var date = $.trim($("#date").val());
+            //alert(date);
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/StudentView/SearchByDate",
+            //    data: "{date:'" + date + "'}",
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+            //    success: function (lectures) {
+            //        var table = $("#tblCustomers");
+            //        table.find("tr:not(:first)").remove();
+            //        $.each(lectures, function (i, lecture) {
+            //            var table = $("#tblLectures");
+            //            var row = table[0].insertRow(-1);
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(0).html(lecture.ModuleName);
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(1).html(lecture.LecturerName);
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(2).html(lecture.LectureType);
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(3).html(lecture.CourseName);  
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(3).html(lecture.BatchCode);  
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(3).html(lecture.Date);         
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(3).html(lecture.StartTime);
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(3).html(lecture.EndTime);
+            //            $(row).append("<td />");
+            //            $(row).find("td").eq(3).html(lecture.HallName);
+            //        });
+            //    }
+            //});
+        }
+    </script>
+

@@ -18,6 +18,10 @@ namespace CourseSheduleManagement.Models
         public string BatchCode { get; set; } = string.Empty;
         public string ModuleName { get; set; } = string.Empty;
         public string LecturerName { get; set; } = string.Empty;
+
+        public string RetrieveDate { get; set; } = string.Empty; 
+        public string RetrieveStartTime { get; set; } = string.Empty; 
+        public string RetrieveEndTime { get; set; } = string.Empty;
     }
 
     public class Lecture:Schedule

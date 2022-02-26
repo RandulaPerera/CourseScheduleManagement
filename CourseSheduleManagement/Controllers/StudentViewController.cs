@@ -16,20 +16,31 @@ namespace CourseSheduleManagement.Controllers
 
         }
 
+        //[HttpGet]
+        //public IActionResult SearchByDate(DateTime date)
+        //{
+
+        //    try
+        //    {
+        //        var data = _commonMethod.SearchByDate(date);
+        //        return View(data);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex);
+        //    }
+        //}
+
         [HttpGet]
-        public IActionResult SearchByDate(DateTime date)
+        public ActionResult SearchByDate(DateTime date)
         {
+            
+                var lectures = _commonMethod.SearchByDate(date);
+                return Json(lectures);
 
-            try
-            {
-                var data = _commonMethod.SearchByDate(date);
-                return View(data);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+           
+        
         }
 
     }
