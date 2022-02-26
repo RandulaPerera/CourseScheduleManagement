@@ -12,6 +12,12 @@ namespace CourseSheduleManagement.Models
         public int HallId { get; set; } = 0;
         public int BatchId { get; set; } = 0;
         public int ModuleId { get; set; } = 0;
+
+        public string CourseName { get; set; } = string.Empty;
+        public string HallName { get; set; } = string.Empty;
+        public string BatchCode { get; set; } = string.Empty;
+        public string ModuleName { get; set; } = string.Empty;
+        public string LecturerName { get; set; } = string.Empty;
     }
 
     public class Lecture:Schedule

@@ -1,8 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Student Home";
+﻿@model IEnumerable<CourseSheduleManagement.Models.Lecture>
+
+@{
+    ViewData["Title"] = "Index";
      Layout = "~/Views/Shared/_StudentLayout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
+<h1>LectureSchedule</h1>
+    @using (Html.BeginForm("SearchByDate", "StudentView", FormMethod.Get))
+    {
+        <div class="row">
+                    <div class="col-4">
+                        <label class="control-label">Date</label>    
+                        <input id="date" name="date" type="date"  class="form-control"/>
+                    </div>
+                     <div class="col-3">
+                        <input type="submit" value="Search" class="btn btn-primary"/>
+                    </div>
+        </div>
+        
+    }

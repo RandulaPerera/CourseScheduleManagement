@@ -80,5 +80,29 @@ namespace CourseSheduleManagement.Method
             }
             return list;
         }
+
+        public List<Lecture> SearchByDate(DateTime date)
+        {
+            DataTable dt = _commonDataAccess.SearchByDate(date);
+            var list = new List<Lecture>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Lecture lecture = new Lecture();
+                lecture.ScheduleId =Convert.ToInt32(dt.Rows[0]["ScheduleId"].ToString());
+                lecture.Date = Convert.ToDateTime(dt.Rows[0]["Date"].ToString());
+                lecture.StartTime = Convert.ToDateTime(dt.Rows[0]["StartTime"].ToString());
+                lecture.EndTime = Convert.ToDateTime(dt.Rows[0]["EndTime"].ToString());
+                lecture.CourseName = dt.Rows[0]["CourseName"].ToString();
+                lecture.HallName = dt.Rows[0]["HallName"].ToString();
+                lecture.BatchCode = dt.Rows[0]["BatchCode"].ToString();
+                lecture.ModuleName = dt.Rows[0]["ModuleName"].ToString();
+                lecture.LecturerName = dt.Rows[0]["LecturerName"].ToString();
+                lecture.LectureType =  dt.Rows[0]["LectureType"].ToString();
+                list.Add(lecture);
+            }
+            return list;
+
+            
+        }
     }
 }

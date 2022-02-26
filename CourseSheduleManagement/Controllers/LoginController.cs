@@ -20,6 +20,7 @@ namespace CourseSheduleManagement.Controllers
             {
 
                 User user=_loginMethods.GetStudentDetailsByEmail(loginUser.Email);
+               // Session["Student"] = user;
                 return RedirectToAction("Index", "StudentView");
 
             }

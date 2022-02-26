@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CourseSheduleManagement.Models.Lecture>
+
+@{
+    ViewData["Title"] = "Lecture Schedule";
+     Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>LectureSchedule</h1>
+<form>
+
+    @Html.TextBox("date" , new { @class = "date-picker"} )
+    <a asp-action="SearchByDate" class="btn btn-primary">Search</a>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 @Html.DisplayNameFor(model => model.Date)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count()==0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    No Match Any Recode
+                </td>
+            </tr>
+
+        }
+        else
+        {
+            foreach (var item in Model) {
+        <tr>
+            <td>
+               @item.Date
+            </td>
+           
+        </tr>
+             }
+
+        }
+        
+    </tbody>
+</table>

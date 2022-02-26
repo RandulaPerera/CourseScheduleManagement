@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace CourseSheduleManagement.DataAccess
@@ -48,6 +49,15 @@ namespace CourseSheduleManagement.DataAccess
 
                     };
             return RunProcedureQueryText("select StaffId,(FirstName+' '+LastName) as FullName from Staff where Active=1", parameters).Tables[0];
+        }
+
+        public DataTable SearchByDate(DateTime date)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@Date",date),
+                    };
+            return RunProcedureQuery("SearchByDate", parameters).Tables[0];
         }
     }
 }
