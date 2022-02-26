@@ -128,5 +128,16 @@ namespace CourseSheduleManagement.Method
 
         }
 
+        public void AddContactNumber(int userId, int contactNumber,string userType)
+        {
+            _commonDataAccess.AddContactNumber(userId, contactNumber,userType);
+        }
+
+        public void UpdateContactNumber(int contactId,int userId, int contactNumber, string userType)
+        {
+            _commonDataAccess.UpdateContactNumber(contactId,userId, contactNumber, userType);
+        }
+
+
     }
 }

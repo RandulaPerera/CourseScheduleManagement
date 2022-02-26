@@ -68,5 +68,28 @@ namespace CourseSheduleManagement.DataAccess
                     };
             return RunProcedureQuery("SearchExamsByDate", parameters).Tables[0];
         }
+
+        public void AddContactNumber(int userId, int contactNumber,string userType)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@UserId",userId),
+            new SqlParameter("@ContactNumber",contactNumber),
+            new SqlParameter("@UserType",userType)
+            };
+            RunProcedureQuery("AddContactNumber", parameters);
+        }
+
+        public void UpdateContactNumber(int contactId,int userId, int contactNumber,string userType)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@ContactId",contactId),
+                        new SqlParameter("@UserId",userId),
+                        new SqlParameter("@ContactNumber",contactNumber),
+                        new SqlParameter("@UserType",userType)
+                    };
+            RunProcedureQueryText("update Contact set ContactNumber=@ContactNumber where ContactId=@ContactId AND UserId=@UserId AND UserType=@UserType", parameters);
+        }
     }
 }

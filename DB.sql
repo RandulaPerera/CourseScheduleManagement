@@ -107,3 +107,11 @@ create table Role(RoleId int Identity(1,1) NOT NULL,
       RoleName varchar(75) NOT NULL,
 	  Active bit NOT NULL,
 	  Constraint [PK_Role] Primary Key Clustered ([RoleId] ASC));
+
+	  create table Contact(ContactId int Identity(1,1) NOT NULL,
+	  UserId int NOT NULL,
+	  UserType varchar(10) NOT NULL,
+      ContactNumber int NOT NULL,
+	  Constraint [PK_Contact] Primary Key Clustered ([ContactId] ASC),
+	  Constraint [FK_Student] Foreign Key ([UserId]) References [dbo].[Student] ([StudentId]),
+	  Constraint [FK_Staff] Foreign Key ([UserId]) References [dbo].[Staff] ([StaffId]));

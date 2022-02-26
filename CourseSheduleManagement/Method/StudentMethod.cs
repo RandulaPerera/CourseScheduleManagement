@@ -1,8 +1,10 @@
 ﻿using CourseSheduleManagement.DataAccess;
+using CourseSheduleManagement.Library;
 using CourseSheduleManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace CourseSheduleManagement.Method
 {
@@ -34,6 +36,20 @@ namespace CourseSheduleManagement.Method
                 student.CourseId =Convert.ToInt32(dt.Rows[0]["CourseId"].ToString());
                 student.BatchId =Convert.ToInt32(dt.Rows[0]["BatchId"].ToString());
             }
+
+            DataTable dtc = _studentDataAccess.GetContactById(studentId);
+
+            student.Contacts = new List<Contact>();
+
+            foreach (DataRow dr in dtc.Rows)
+            {
+                var contact = new Contact();
+                contact.ContactId = dr.GetValue<int>("ContactId");
+                contact.UserId = dr.GetValue<int>("UserId");
+                contact.ContactNumber = dr.GetValue<int>("ContactNumber");
+                student.Contacts.Add(contact);
+            }
+       
             return student;
         }
         public void EditStudent(int studentId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int courseId, int batchId)
@@ -44,11 +60,6 @@ namespace CourseSheduleManagement.Method
         public int AddStudent(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email,string password, int courseId, int batchId)
         {
             return _studentDataAccess.AddStudent(firstName, lastName, line1, line2, dob, sex, nic, email,password, courseId, batchId);
-        }
-
-        public void AddStudentMobile(int studentId,int mobileNumber)
-        {
-             _studentDataAccess.AddStudentMobile(studentId, mobileNumber);
         }
 
         public void DeleteStudent(int studentId)

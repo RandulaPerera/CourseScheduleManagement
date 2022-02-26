@@ -45,16 +45,6 @@ namespace CourseSheduleManagement.DataAccess
             return int.Parse(RunProcedureScalar("AddStudent", parameters).ToString());
         }
 
-        public void AddStudentMobile(int studentId, int mobileNuber)
-        {
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-            new SqlParameter("@StudentId",studentId),
-            new SqlParameter("@MobileNumber",mobileNuber)
-            };
-            RunProcedureQuery("AddStudentMobile", parameters);
-        }
-
         public void EditStudent(int studentId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int courseId, int batchId)
         {
             SqlParameter[] parameters = new SqlParameter[]
@@ -85,6 +75,13 @@ namespace CourseSheduleManagement.DataAccess
             RunProcedureQuery("DeleteStudent", parameters);
         }
 
-   
+        public DataTable GetContactById(int studentId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@UserId",studentId),
+                    };
+            return RunProcedureQueryText("select * from Contact where UserId=@UserId AND UserType='Student'", parameters).Tables[0];
+        }
     }
 }

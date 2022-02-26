@@ -92,17 +92,29 @@
                     </div>
                     <div class="col-6">
                         <label class="control-label">Batch</label>    
-                        <select id="selectBatchId" asp-for="BatchId" class="form-control"></select>
+                        <select id="selectBatchId" asp-for="BatchId" class="form-control"></select><br/>
                         <span asp-validation-for="BatchId" class="text-danger"></span>
                     </div>
                  </div>
+                  <div class="row">
+                     <div class="col-6">
+                         <label class="control-label">Contact Numbers</label>
+                     </div>
+                </div>
                  <div class="row">
-                         <div class="col-6">
-                              <label class="control-label">Contact Number</label>
-                              <input type="text"  asp-for="Contacts" name="Contacts[]" class="form-control"><br/>
-                              <button type="button" class="addContacts">+</button>
-                         </div>
-                 </div>
+                     
+                         @for (int i = 0; i < Model.Contacts.Count; i++)
+                         {
+                            <div class="col-4">                      
+                                <input asp-for="Contacts[i].ContactNumber" class="form-control" placeholder="Contact Number"/>
+                                <span asp-validation-for="Contacts[i].ContactNumber" class="text-danger"></span>
+                                 
+                             </div>
+                   
+                         }
+                        <button type="button" class="addContacts">+</button>
+                </div>
+                
             </div>
             <div class="form-group">
                  <div class="row">
@@ -128,20 +140,24 @@
 
         $("button.addContacts").on("click", function(e) {
        
-                    var html = '<label class="control-label">Contact Number</label>';
-                    html += '<input type="text" asp-for="Contacts" name="Contacts[]" class="form-control"><br/>';
+                    var html='';
+                    //html += '<div class="row">';
+                    html +='<div class="col-4">';
+                    html += '<input type="text" asp-for="Contacts[i].ContactNumber" class="form-control"  placeholder="Contact Number"><br/>';
+                    html += '</div>';
+                    //html += '</div>';
                     $(this).before(html);  
         });
 
-        const contact_numbers = [];           
-        function GetContacts() {
-            var input = document.getElementsByName('Contacts[]');
+        //const contact_numbers = [];           
+        //function GetContacts() {
+        //    var input = document.getElementsByName('Contacts[]');
   
-            for (var i = 0; i < input.length; i++) {
+        //    for (var i = 0; i < input.length; i++) {
                
-                contact_numbers.push(input[i].value);
-            }
-        }
+        //        contact_numbers.push(input[i].value);
+        //    }
+        //}
 
       
 

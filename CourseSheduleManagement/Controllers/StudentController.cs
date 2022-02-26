@@ -42,7 +42,7 @@ namespace CourseSheduleManagement.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit([Bind("StudentId,FirstName,LastName,Line1,Line2,DoB,Sex,NIC,Email,Password,CourseId,BatchId")] Student student)
+        public IActionResult AddOrEdit([Bind("StudentId,FirstName,LastName,Line1,Line2,DoB,Sex,NIC,Email,Password,CourseId,BatchId,Contacts")] Student student)
         {
             List<Course> courseList = _commonMethod.GetCourses();
             ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
@@ -53,19 +53,24 @@ namespace CourseSheduleManagement.Controllers
                 {
                     int studentId = _studentMethod.AddStudent(student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email,student.Password, student.CourseId, student.BatchId);
 
-                    //System.Collections.IList list = student.Contacts;
-                    //for (int i = 0; i<list.Count; i++)
-                    //{
-                    //    int ch = (int)list[i];
-                    //    _studentMethod.AddStudentMobile(studentId, ch);
-                    //}
-                    //
+                    string usertype = "Student";
+                    for (int i = 0; i<student.Contacts.Count; i++)
+                    {
+                        _commonMethod.AddContactNumber(studentId, student.Contacts[i].ContactNumber, usertype);
+                    }
+
 
 
                 }
                 else {
                     _studentMethod.EditStudent(student.StudentId, student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email,student.Password, student.CourseId, student.BatchId);
 
+                    string usertype = "Student";
+                    for (int i = 0; i<student.Contacts.Count; i++)
+                    {
+                        _commonMethod.UpdateContactNumber(student.Contacts[i].ContactId, student.StudentId, student.Contacts[i].ContactNumber,usertype);
+
+                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
