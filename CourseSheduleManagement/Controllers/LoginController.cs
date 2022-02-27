@@ -23,7 +23,12 @@ namespace CourseSheduleManagement.Controllers
 
                 User user=_loginMethods.GetStudentDetailsByEmail(loginUser.Email);
                 HttpContext.Session.SetString("Student",JsonConvert.SerializeObject(user));
-                return RedirectToAction("Index", "StudentView");
+
+                if (loginUser.Email==user.Email && loginUser.Password==user.Password)
+                {
+                    return RedirectToAction("Index", "StudentView");
+
+                }
 
             }
             else if (loginUser.UserType =="Staff")

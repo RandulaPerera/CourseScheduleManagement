@@ -3,21 +3,28 @@
     ViewData["Title"] = "Lectures";
      Layout = "~/Views/Shared/_StudentLayout.cshtml";
 }
-
+<body onload="AllLectures()"> </body>
 <h1>Lecture Schedule</h1><br/>
    
         <div class="row">
-                    <div class="col-3">
+                   @* <div class="col-3">
                         <label class="control-label">Search By Date</label>    
+                    </div>*@
+                    <div class="col-0">
+                        <input id="date" type="hidden"  class="form-control"/>
                     </div>
-                    <div class="col-4">
-                        <input id="date" id="date" type="date"  class="form-control"/>
-                    </div>
-                     <div class="col-3">
-                        <input type="button" value="Search" class="btn btn-primary" onclick="GetLectures();"/><br/><br/>
+                     <div class="col-5">
+                        <input type="button" value="Lectures By Today" class="btn btn-primary" onclick="GetLectures();"/><br/><br/>
                     </div>
         </div>
-  
+        <div class="row">
+                    <div class="col-3">
+                        <label class="control-label">Module</label>    
+                        <select id="selectModuleId" asp-items="ViewBag.ModuleList as SelectList" class="form-control" onchange="GetModules();">
+                             <option selected>-- Select Module --</option>
+                        </select>
+                    </div>
+        </div>
 
     <table id="tblLectures" class="table table-striped">
         <tr>
@@ -35,9 +42,84 @@
  
     <script type="text/javascript">
         
+       
+        function AllLectures()
+        {
+          $.get("/StudentView/AllLectures",{ },function(lectures){
+                 
+                    var table = $("#tblLectures");
+                    table.find("tr:not(:first)").remove();
+                    $.each(lectures, function (i, lecture) {
+                        var table = $("#tblLectures");
+                        var row = table[0].insertRow(-1);
+
+                        $(row).append("<td />");
+                        $(row).find("td").eq(0).html(lecture.moduleName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(1).html(lecture.lecturerName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(2).html(lecture.lectureType);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(3).html(lecture.courseName);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(4).html(lecture.batchCode);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(5).html(lecture.retrieveDate);         
+                        $(row).append("<td />");
+                        $(row).find("td").eq(6).html(lecture.retrieveStartTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(7).html(lecture.retrieveEndTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(8).html(lecture.hallName);
+                    });          
+            
+            });
+
+        
+        
+        }
+        
+
         function GetLectures() {
 
+            var today = new Date();
+            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            $("#date").val(date);
              $.get("/StudentView/SearchLecturesByDate",{ date:$('#date').val()},function(lectures){
+                 
+                    var table = $("#tblLectures");
+                    table.find("tr:not(:first)").remove();
+                    $.each(lectures, function (i, lecture) {
+                        var table = $("#tblLectures");
+                        var row = table[0].insertRow(-1);
+
+                        $(row).append("<td />");
+                        $(row).find("td").eq(0).html(lecture.moduleName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(1).html(lecture.lecturerName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(2).html(lecture.lectureType);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(3).html(lecture.courseName);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(4).html(lecture.batchCode);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(5).html(lecture.retrieveDate);         
+                        $(row).append("<td />");
+                        $(row).find("td").eq(6).html(lecture.retrieveStartTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(7).html(lecture.retrieveEndTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(8).html(lecture.hallName);
+                    });          
+            
+            });
+         
+        }
+
+          function GetModules() {
+
+             $.get("/StudentView/SearchLecturesByModule",{ moduleId:$('#selectModuleId').val()},function(lectures){
                  
                     var table = $("#tblLectures");
                     table.find("tr:not(:first)").remove();

@@ -83,9 +83,9 @@ namespace CourseSheduleManagement.Method
             return list;
         }
 
-        public List<Lecture> SearchLecturesByDate(DateTime date)
+        public List<Lecture> SearchLecturesByDate(DateTime date,int courseId)
         {
-            DataTable dt = _commonDataAccess.SearchLecturesByDate(date);
+            DataTable dt = _commonDataAccess.SearchLecturesByDate(date, courseId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Lecture()
@@ -106,9 +106,77 @@ namespace CourseSheduleManagement.Method
 
         }
 
-        public List<Exam> SearchExamsByDate(DateTime date)
+        public List<Exam> SearchExamsByModule(int moduleId, int courseId)
         {
-            DataTable dt = _commonDataAccess.SearchExamsByDate(date);
+            DataTable dt = _commonDataAccess.SearchExamsByModule(moduleId, courseId);
+
+            var list = (from dr in dt.AsEnumerable()
+                        select new Exam()
+                        {
+                            ScheduleId = dr.GetValue<int>("ScheduleId"),
+                            RetrieveDate = dr.GetValue<string>("Date"),
+                            RetrieveStartTime = dr.GetValue<string>("StartTime"),
+                            RetrieveEndTime = dr.GetValue<string>("EndTime"),
+                            CourseName = dr.GetValue<string>("CourseName"),
+                            HallName = dr.GetValue<string>("HallName"),
+                            BatchCode = dr.GetValue<string>("BatchCode"),
+                            ModuleName = dr.GetValue<string>("ModuleName"),
+                            LecturerName = dr.GetValue<string>("LecturerName")
+                        }).ToList();
+
+            return list;
+
+        }
+
+        public List<Lecture> SearchLecturesByModule(int moduleId,int courseId)
+        {
+            DataTable dt = _commonDataAccess.SearchLecturesByModule(moduleId, courseId);
+
+            var list = (from dr in dt.AsEnumerable()
+                        select new Lecture()
+                        {
+                            ScheduleId = dr.GetValue<int>("ScheduleId"),
+                            RetrieveDate = dr.GetValue<string>("Date"),
+                            RetrieveStartTime = dr.GetValue<string>("StartTime"),
+                            RetrieveEndTime = dr.GetValue<string>("EndTime"),
+                            CourseName = dr.GetValue<string>("CourseName"),
+                            HallName = dr.GetValue<string>("HallName"),
+                            BatchCode = dr.GetValue<string>("BatchCode"),
+                            ModuleName = dr.GetValue<string>("ModuleName"),
+                            LecturerName = dr.GetValue<string>("LecturerName"),
+                            LectureType = dr.GetValue<string>("LectureType")
+                        }).ToList();
+
+            return list;
+
+        }
+
+        public List<Lecture> AllLectures(int courseId)
+        {
+            DataTable dt = _commonDataAccess.AllLectures(courseId);
+
+            var list = (from dr in dt.AsEnumerable()
+                        select new Lecture()
+                        {
+                            ScheduleId = dr.GetValue<int>("ScheduleId"),
+                            RetrieveDate = dr.GetValue<string>("Date"),
+                            RetrieveStartTime = dr.GetValue<string>("StartTime"),
+                            RetrieveEndTime = dr.GetValue<string>("EndTime"),
+                            CourseName = dr.GetValue<string>("CourseName"),
+                            HallName = dr.GetValue<string>("HallName"),
+                            BatchCode = dr.GetValue<string>("BatchCode"),
+                            ModuleName = dr.GetValue<string>("ModuleName"),
+                            LecturerName = dr.GetValue<string>("LecturerName"),
+                            LectureType = dr.GetValue<string>("LectureType")
+                        }).ToList();
+
+            return list;
+
+        }
+
+        public List<Exam> AllExams(int courseId)
+        {
+            DataTable dt = _commonDataAccess.AllExams(courseId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Exam()
@@ -138,6 +206,18 @@ namespace CourseSheduleManagement.Method
             _commonDataAccess.UpdateContactNumber(contactId,userId, contactNumber, userType);
         }
 
-
+        public List<Module> GetModulesByCourseId(int courseId)
+        {
+            DataTable dt = _commonDataAccess.GetModulesByCourseId(courseId);
+            var list = new List<Module>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Module module = new Module();
+                module.ModuleId = Convert.ToInt32(dt.Rows[i]["ModuleId"]);
+                module.ModuleName = dt.Rows[i]["ModuleName"].ToString();
+                list.Add(module);
+            }
+            return list;
+        }
     }
 }

@@ -51,22 +51,52 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQueryText("select StaffId,(FirstName+' '+LastName) as FullName from Staff where Active=1", parameters).Tables[0];
         }
 
-        public DataTable SearchLecturesByDate(DateTime date)
+        public DataTable SearchLecturesByDate(DateTime date,int courseId)
         {
             SqlParameter[] parameters = new SqlParameter[]
                     {
                         new SqlParameter("@Date",date),
+                        new SqlParameter("@CourseId",courseId),
                     };
             return RunProcedureQuery("SearchLecturesByDate", parameters).Tables[0];
         }
 
-        public DataTable SearchExamsByDate(DateTime date)
+        public DataTable SearchExamsByModule(int moduleId, int courseId)
         {
             SqlParameter[] parameters = new SqlParameter[]
                     {
-                        new SqlParameter("@Date",date),
+                        new SqlParameter("@ModuleId",moduleId),
+                        new SqlParameter("@CourseId",courseId),
                     };
-            return RunProcedureQuery("SearchExamsByDate", parameters).Tables[0];
+            return RunProcedureQuery("SearchExamsByModule", parameters).Tables[0];
+        }
+
+        public DataTable SearchLecturesByModule(int moduleId, int courseId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@ModuleId",moduleId),
+                        new SqlParameter("@CourseId",courseId),
+                    };
+            return RunProcedureQuery("SearchLecturesByModule", parameters).Tables[0];
+        }
+
+        public DataTable AllLectures(int courseId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@CourseId",courseId)
+                    };
+            return RunProcedureQuery("AllLectures", parameters).Tables[0];
+        }
+
+        public DataTable AllExams(int courseId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@CourseId",courseId)
+                    };
+            return RunProcedureQuery("AllExams", parameters).Tables[0];
         }
 
         public void AddContactNumber(int userId, int contactNumber,string userType)
@@ -90,6 +120,15 @@ namespace CourseSheduleManagement.DataAccess
                         new SqlParameter("@UserType",userType)
                     };
             RunProcedureQueryText("update Contact set ContactNumber=@ContactNumber where ContactId=@ContactId AND UserId=@UserId AND UserType=@UserType", parameters);
+        }
+
+        public DataTable GetModulesByCourseId(int courseId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                         new SqlParameter("@CourseId",courseId),
+                    };
+            return RunProcedureQueryText("select * from Module where Active=1 AND CourseId=@CourseId", parameters).Tables[0];
         }
     }
 }

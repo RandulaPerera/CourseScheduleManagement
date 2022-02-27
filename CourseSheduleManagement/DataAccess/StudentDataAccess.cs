@@ -81,7 +81,7 @@ namespace CourseSheduleManagement.DataAccess
                     {
                         new SqlParameter("@UserId",studentId),
                     };
-            return RunProcedureQueryText("select * from Contact where UserId=@UserId AND UserType='Student'", parameters).Tables[0];
+            return RunProcedureQueryText("select ContactId,UserId,ContactNumber from Contact where UserId=@UserId AND UserType='Student'", parameters).Tables[0];
         }
     }
 }

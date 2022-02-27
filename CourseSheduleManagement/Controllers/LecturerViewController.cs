@@ -29,26 +29,26 @@ namespace CourseSheduleManagement.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult SearchLecturesByDate(DateTime date)
-        {
+        //[HttpGet]
+        //public ActionResult SearchLecturesByDate(DateTime date)
+        //{
 
-            var lectures = _commonMethod.SearchLecturesByDate(date);
-            return Json(lectures);
-
-
-
-        }
-
-        [HttpGet]
-        public ActionResult SearchExamsByDate(DateTime date)
-        {
-
-            var exams = _commonMethod.SearchExamsByDate(date);
-            return Json(exams);
+        //    var lectures = _commonMethod.SearchLecturesByDate(date);
+        //    return Json(lectures);
 
 
 
-        }
+        //}
+
+        //[HttpGet]
+        //public ActionResult SearchExamsByDate(DateTime date)
+        //{
+
+        //    var exams = _commonMethod.SearchExamsByDate(date);
+        //    return Json(exams);
+
+
+
+        //}
     }
 }
