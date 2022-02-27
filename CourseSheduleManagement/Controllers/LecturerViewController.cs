@@ -37,33 +37,15 @@ namespace CourseSheduleManagement.Controllers
 
         public IActionResult Exams()
         {
+            List<Course> courseList = _commonMethod.GetCourses();
+            ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
 
             return View();
 
         }
 
 
-        //[HttpGet]
-        //public ActionResult SearchLecturesByDate(DateTime date)
-        //{
-
-        //    var lectures = _commonMethod.SearchLecturesByDate(date);
-        //    return Json(lectures);
-
-
-
-        //}
-
-        //[HttpGet]
-        //public ActionResult SearchExamsByDate(DateTime date)
-        //{
-
-        //    var exams = _commonMethod.SearchExamsByDate(date);
-        //    return Json(exams);
-
-
-
-        //}
+      
         [HttpGet]
         public ActionResult GetLecturesByModule(int moduleId)
         {
@@ -79,6 +61,24 @@ namespace CourseSheduleManagement.Controllers
 
             var lectures = _commonMethod.GetAllLectures(user.StaffId);
             return Json(lectures);
+
+        }
+
+        [HttpGet]
+        public ActionResult GetExamsByModule(int moduleId)
+        {
+            var exams = _commonMethod.GetExamsByModule(moduleId);
+            return Json(exams);
+
+        }
+
+        [HttpGet]
+        public ActionResult GetAllExams()
+        {
+            var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Staff"));
+
+            var exams = _commonMethod.GetAllExams(user.StaffId);
+            return Json(exams);
 
         }
     }

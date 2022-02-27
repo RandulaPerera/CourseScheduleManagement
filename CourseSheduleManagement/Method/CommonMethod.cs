@@ -265,5 +265,49 @@ namespace CourseSheduleManagement.Method
             return list;
 
         }
+
+        public List<Exam> GetExamsByModule(int moduleId)
+        {
+            DataTable dt = _commonDataAccess.GetExamsByModule(moduleId);
+
+            var list = (from dr in dt.AsEnumerable()
+                        select new Exam()
+                        {
+                            ScheduleId = dr.GetValue<int>("ScheduleId"),
+                            RetrieveDate = dr.GetValue<string>("Date"),
+                            RetrieveStartTime = dr.GetValue<string>("StartTime"),
+                            RetrieveEndTime = dr.GetValue<string>("EndTime"),
+                            CourseName = dr.GetValue<string>("CourseName"),
+                            HallName = dr.GetValue<string>("HallName"),
+                            BatchCode = dr.GetValue<string>("BatchCode"),
+                            ModuleName = dr.GetValue<string>("ModuleName"),
+                            LecturerName = dr.GetValue<string>("LecturerName")
+                        }).ToList();
+
+            return list;
+
+        }
+
+        public List<Exam> GetAllExams(int staffId)
+        {
+            DataTable dt = _commonDataAccess.GetAllExams(staffId);
+
+            var list = (from dr in dt.AsEnumerable()
+                        select new Exam()
+                        {
+                            ScheduleId = dr.GetValue<int>("ScheduleId"),
+                            RetrieveDate = dr.GetValue<string>("Date"),
+                            RetrieveStartTime = dr.GetValue<string>("StartTime"),
+                            RetrieveEndTime = dr.GetValue<string>("EndTime"),
+                            CourseName = dr.GetValue<string>("CourseName"),
+                            HallName = dr.GetValue<string>("HallName"),
+                            BatchCode = dr.GetValue<string>("BatchCode"),
+                            ModuleName = dr.GetValue<string>("ModuleName"),
+                            LecturerName = dr.GetValue<string>("LecturerName")
+                        }).ToList();
+
+            return list;
+
+        }
     }
 }

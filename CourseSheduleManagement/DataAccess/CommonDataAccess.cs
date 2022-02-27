@@ -148,5 +148,24 @@ namespace CourseSheduleManagement.DataAccess
                     };
             return RunProcedureQuery("GetLecturesByModule", parameters).Tables[0];
         }
+
+
+        public DataTable GetExamsByModule(int moduleId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@ModuleId",moduleId)
+                    };
+            return RunProcedureQuery("GetExamsByModule", parameters).Tables[0];
+        }
+
+        public DataTable GetAllExams(int staffId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@StaffId",staffId)
+                    };
+            return RunProcedureQuery("GetAllExams", parameters).Tables[0];
+        }
     }
 }
