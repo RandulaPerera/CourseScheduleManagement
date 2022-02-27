@@ -49,7 +49,7 @@ namespace CourseSheduleManagement.Method
                 contact.ContactNumber = dr.GetValue<int>("ContactNumber");
                 student.Contacts.Add(contact);
             }
-       
+
             return student;
         }
         public void EditStudent(int studentId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int courseId, int batchId)

@@ -219,5 +219,51 @@ namespace CourseSheduleManagement.Method
             }
             return list;
         }
+
+        public List<Lecture> GetAllLectures(int staffId)
+        {
+            DataTable dt = _commonDataAccess.GetAllLectures(staffId);
+
+            var list = (from dr in dt.AsEnumerable()
+                        select new Lecture()
+                        {
+                            ScheduleId = dr.GetValue<int>("ScheduleId"),
+                            RetrieveDate = dr.GetValue<string>("Date"),
+                            RetrieveStartTime = dr.GetValue<string>("StartTime"),
+                            RetrieveEndTime = dr.GetValue<string>("EndTime"),
+                            CourseName = dr.GetValue<string>("CourseName"),
+                            HallName = dr.GetValue<string>("HallName"),
+                            BatchCode = dr.GetValue<string>("BatchCode"),
+                            ModuleName = dr.GetValue<string>("ModuleName"),
+                            LecturerName = dr.GetValue<string>("LecturerName"),
+                            LectureType = dr.GetValue<string>("LectureType")
+                        }).ToList();
+
+            return list;
+
+        }
+
+        public List<Lecture> GetLecturesByModule(int moduleId)
+        {
+            DataTable dt = _commonDataAccess.GetLecturesByModule(moduleId);
+
+            var list = (from dr in dt.AsEnumerable()
+                        select new Lecture()
+                        {
+                            ScheduleId = dr.GetValue<int>("ScheduleId"),
+                            RetrieveDate = dr.GetValue<string>("Date"),
+                            RetrieveStartTime = dr.GetValue<string>("StartTime"),
+                            RetrieveEndTime = dr.GetValue<string>("EndTime"),
+                            CourseName = dr.GetValue<string>("CourseName"),
+                            HallName = dr.GetValue<string>("HallName"),
+                            BatchCode = dr.GetValue<string>("BatchCode"),
+                            ModuleName = dr.GetValue<string>("ModuleName"),
+                            LecturerName = dr.GetValue<string>("LecturerName"),
+                            LectureType = dr.GetValue<string>("LectureType")
+                        }).ToList();
+
+            return list;
+
+        }
     }
 }

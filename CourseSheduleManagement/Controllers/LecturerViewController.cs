@@ -1,6 +1,11 @@
 ﻿using CourseSheduleManagement.Method;
+using CourseSheduleManagement.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace CourseSheduleManagement.Controllers
 {
@@ -14,8 +19,17 @@ namespace CourseSheduleManagement.Controllers
             return View();
         }
 
-        public IActionResult Lectures()
+        [HttpGet]
+        public ActionResult GetModuleList(int courseId)
         {
+            List<Module> moduleList = _commonMethod.GetModulesByCourseId(courseId);
+            return Json(moduleList);
+        }
+
+        public IActionResult Lectures(int courseId)
+        {
+            List<Course> courseList = _commonMethod.GetCourses();
+            ViewBag.CourseList=new SelectList(courseList, "CourseId", "CourseName", "CourseCode");
 
             return View();
 
@@ -50,5 +64,22 @@ namespace CourseSheduleManagement.Controllers
 
 
         //}
+        [HttpGet]
+        public ActionResult GetLecturesByModule(int moduleId)
+        {
+            var lectures = _commonMethod.GetLecturesByModule(moduleId);
+            return Json(lectures);
+
+        }
+
+        [HttpGet]
+        public ActionResult AllLectures()
+        {
+            var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Staff"));
+
+            var lectures = _commonMethod.GetAllLectures(user.StaffId);
+            return Json(lectures);
+
+        }
     }
 }

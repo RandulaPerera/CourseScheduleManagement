@@ -35,6 +35,7 @@ namespace CourseSheduleManagement.Method
                 userStaff.Email = dt.Rows[0]["Email"].ToString();
                 userStaff.Password = dt.Rows[0]["Password"].ToString();
                 userStaff.RoleName =  dt.Rows[0]["RoleName"].ToString();
+                userStaff.StaffId =  Convert.ToInt32(dt.Rows[0]["StaffId"].ToString());
             }
             return userStaff;
         }

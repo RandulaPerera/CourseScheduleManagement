@@ -3,18 +3,22 @@
     ViewData["Title"] = "Lectures";
      Layout = "~/Views/Shared/_LecturerLayout.cshtml";
 }
-
+<body onload="AllLectures()"> </body>
 <h1>Lecture Schedule</h1><br/>
-   
-        <div class="row">
-                    <div class="col-3">
-                        <label class="control-label">Search By Date</label>    
+         <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Course</label>
+                        <select id="selectCourseId" asp-items="ViewBag.CourseList as SelectList" class="form-control" onchange="GetModuleList();">
+                            <option selected>-- Select Course --</option>
+                        </select>
                     </div>
-                    <div class="col-4">
-                        <input id="date" id="date" type="date"  class="form-control"/>
                     </div>
-                     <div class="col-3">
-                        <input type="button" value="Search" class="btn btn-primary" onclick="GetLectures();"/><br/><br/>
+         <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Module</label>    
+                        <select id="selectModuleId" class="form-control" onchange="GetModules();">
+                             <option selected>-- Select Module --</option>
+                        </select>
                     </div>
         </div>
   
@@ -35,9 +39,53 @@
  
     <script type="text/javascript">
         
-        function GetLectures() {
+        function GetModuleList() {   
+      
+                $.get("/LecturerView/GetModuleList",{ courseId:$('#selectCourseId').val() },function(data){
+                     $("#selectModuleId").empty();
+                     $("#selectModuleId").append("<option selected value=''>-- Select Module --</option>");           
+                     $.each(data,function(index,row){
+                            $("#selectModuleId").append("<option value='"+row.moduleId+"'>"+row.moduleName+"</option>");
+            });
+                 });
+        }
+          function GetModules() {
 
-             $.get("/LecturerView/SearchLecturesByDate",{ date:$('#date').val()},function(lectures){
+             $.get("/LecturerView/GetLecturesByModule",{ moduleId:$('#selectModuleId').val()},function(lectures){
+                 
+                     var table = $("#tblLectures");
+                    table.find("tr:not(:first)").remove();
+                    $.each(lectures, function (i, lecture) {
+                        var table = $("#tblLectures");
+                        var row = table[0].insertRow(-1);
+
+                        $(row).append("<td />");
+                        $(row).find("td").eq(0).html(lecture.moduleName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(1).html(lecture.lecturerName);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(2).html(lecture.lectureType);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(3).html(lecture.courseName);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(4).html(lecture.batchCode);  
+                        $(row).append("<td />");
+                        $(row).find("td").eq(5).html(lecture.retrieveDate);         
+                        $(row).append("<td />");
+                        $(row).find("td").eq(6).html(lecture.retrieveStartTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(7).html(lecture.retrieveEndTime);
+                        $(row).append("<td />");
+                        $(row).find("td").eq(8).html(lecture.hallName);
+                    });          
+            
+            });
+         
+        }
+
+         function AllLectures() {
+
+             $.get("/LecturerView/AllLectures",{ },function(lectures){
                     
                   
                     var table = $("#tblLectures");

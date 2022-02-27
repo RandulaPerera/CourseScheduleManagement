@@ -22,7 +22,7 @@ namespace CourseSheduleManagement.Controllers
 
         public IActionResult Index()
         {
-            var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Staff"));
+            //var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Staff"));
 
             return View();
         }

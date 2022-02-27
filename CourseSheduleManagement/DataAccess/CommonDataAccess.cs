@@ -90,6 +90,15 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQuery("AllLectures", parameters).Tables[0];
         }
 
+        public DataTable GetAllLectures(int staffId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@StaffId",staffId)
+                    };
+            return RunProcedureQuery("GetAllLectures", parameters).Tables[0];
+        }
+
         public DataTable AllExams(int courseId)
         {
             SqlParameter[] parameters = new SqlParameter[]
@@ -129,6 +138,15 @@ namespace CourseSheduleManagement.DataAccess
                          new SqlParameter("@CourseId",courseId),
                     };
             return RunProcedureQueryText("select * from Module where Active=1 AND CourseId=@CourseId", parameters).Tables[0];
+        }
+
+        public DataTable GetLecturesByModule(int moduleId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@ModuleId",moduleId)
+                    };
+            return RunProcedureQuery("GetLecturesByModule", parameters).Tables[0];
         }
     }
 }

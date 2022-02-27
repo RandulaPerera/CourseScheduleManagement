@@ -1,9 +1,12 @@
-﻿using CourseSheduleManagement.Method;
+﻿using CourseSheduleManagement.DataAccess;
+using CourseSheduleManagement.Library;
+using CourseSheduleManagement.Method;
 using CourseSheduleManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace CourseSheduleManagement.Controllers
 {
@@ -11,6 +14,7 @@ namespace CourseSheduleManagement.Controllers
     {
         StudentMethod _studentMethod = new StudentMethod();
         CommonMethod _commonMethod = new CommonMethod();
+        StudentDataAccess _studentDataAccess = new StudentDataAccess();
 
         public IActionResult Index()
         {
@@ -34,9 +38,17 @@ namespace CourseSheduleManagement.Controllers
 
 
             if (id == 0)
-                return View(new Student());
+            {
+                var student=new Student();
+                student.Contacts = new List<Contact>();
+                student.Contacts.Add(new Contact());
+                return View(student);
+            }
             else
+            {
                 return View(_studentMethod.GetStudentById(id));
+            }
+               
         }
 
         
@@ -65,10 +77,18 @@ namespace CourseSheduleManagement.Controllers
                 else {
                     _studentMethod.EditStudent(student.StudentId, student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email,student.Password, student.CourseId, student.BatchId);
 
+
+                    Student stu=_studentMethod.GetStudentById(student.StudentId);
+                    var updateContactId=0;
+                    for (int j = 0; j< stu.Contacts.Count; j++)
+                    {
+                        updateContactId=stu.Contacts[j].ContactId;
+                    }
+                   
                     string usertype = "Student";
                     for (int i = 0; i<student.Contacts.Count; i++)
                     {
-                        _commonMethod.UpdateContactNumber(student.Contacts[i].ContactId, student.StudentId, student.Contacts[i].ContactNumber,usertype);
+                        _commonMethod.UpdateContactNumber(updateContactId, student.StudentId, student.Contacts[i].ContactNumber,usertype);
 
                     }
                 }

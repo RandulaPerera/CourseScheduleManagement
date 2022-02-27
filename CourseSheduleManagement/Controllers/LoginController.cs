@@ -21,13 +21,18 @@ namespace CourseSheduleManagement.Controllers
             if (loginUser.UserType == "Student")
             {
 
-                User user=_loginMethods.GetStudentDetailsByEmail(loginUser.Email);
-                HttpContext.Session.SetString("Student",JsonConvert.SerializeObject(user));
+                User user = _loginMethods.GetStudentDetailsByEmail(loginUser.Email);
+                HttpContext.Session.SetString("Student", JsonConvert.SerializeObject(user));
 
                 if (loginUser.Email==user.Email && loginUser.Password==user.Password)
                 {
                     return RedirectToAction("Index", "StudentView");
 
+                }
+                else
+                {
+                    ViewBag.Message = string.Format("Wrong Email or Password");
+                    return View();
                 }
 
             }
@@ -38,16 +43,41 @@ namespace CourseSheduleManagement.Controllers
                 HttpContext.Session.SetString("Staff", JsonConvert.SerializeObject(user));
                 if (user.RoleName == "Lecturer")
                 {
-                    return RedirectToAction("Index", "LecturerView");
+                    if (loginUser.Email==user.Email && loginUser.Password==user.Password)
+                    {
+                        return RedirectToAction("Index", "LecturerView");
+
+                    }
+                    else
+                    {
+                        ViewBag.Message = string.Format("Wrong Email or Password");
+                        return View();
+                    }
+
 
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Admin");
+                    if (loginUser.Email==user.Email && loginUser.Password==user.Password)
+                    {
+                        return RedirectToAction("Index", "Admin");
+
+                    }
+                    else
+                    {
+                        ViewBag.Message = string.Format("Wrong Email or Password");
+                        return View();
+                    }
 
 
                 }
 
+
+            }
+            else
+            {
+                ViewBag.Message = string.Format("Wrong Input");
+                return View();
 
             }
 
