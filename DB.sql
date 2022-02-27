@@ -22,6 +22,17 @@ create table Batch(BatchId int Identity(1,1) NOT NULL,
 	  Constraint [PK_Batch] Primary Key Clustered ([BatchId] ASC),
 	  Constraint [FK_Batch_Course] Foreign Key ([CourseId]) References [dbo].[Course] ([CourseId]));
 
+create table Role(RoleId int Identity(1,1) NOT NULL,
+      RoleName varchar(75) NOT NULL,
+	  Active bit NOT NULL,
+	  Constraint [PK_Role] Primary Key Clustered ([RoleId] ASC));
+
+create table Contact(ContactId int Identity(1,1) NOT NULL,
+	  UserId int NOT NULL,
+	  UserType varchar(10) NOT NULL,
+      ContactNumber int NOT NULL,
+	  Constraint [PK_Contact] Primary Key Clustered ([ContactId] ASC));
+
 create table Student(StudentId int Identity(1,1) NOT NULL,
       FirstName varchar(30) NOT NULL,
       LastName varchar(30) NOT NULL,
@@ -38,10 +49,6 @@ create table Student(StudentId int Identity(1,1) NOT NULL,
 	  Constraint [PK_Student] Primary Key Clustered ([StudentId] ASC),
 	  Constraint [FK_Student_Course] Foreign Key ([CourseId]) References [dbo].[Course] ([CourseId]),
 	  Constraint [FK_Student_Batch] Foreign Key ([BatchId]) References [dbo].[Batch] ([BatchId]));
-
-create table StudentMobileNumber(StudentId int NOT NULL,
-      MobileNumber int NOT NULL,
-	  Constraint [FK_Student] Foreign Key ([StudentId]) References [dbo].[Student] ([StudentId]));
 
 create table Module(ModuleId int Identity(1,1) NOT NULL,
 	  ModuleName varchar(75)  NOT NULL,
@@ -63,13 +70,8 @@ create table Staff(StaffId int Identity(1,1) NOT NULL,
 	  Password varchar(70) NOT NULL,
 	  RoleId int NOT NULL,
 	  Active bit NOT NULL,
-	  Constraint [PK_Staff] Primary Key Clustered ([StaffId] ASC)
+	  Constraint [PK_Staff] Primary Key Clustered ([StaffId] ASC),
 	  Constraint [FK_Role] Foreign Key ([RoleId]) References [dbo].[Role] ([RoleId]));
-
-create table StaffMobileNumber(StaffId int NOT NULL,
-      MobileNumber int NOT NULL,
-	  Constraint [PK_StaffMobileNumber] Primary Key Clustered ([StaffId] ASC),
-	  Constraint [FK_Staff] Foreign Key ([StaffId]) References [dbo].[Staff] ([StaffId]));
 
 create table Schedule(ScheduleId int Identity(1,1) NOT NULL,
       Date datetime NOT NULL,
@@ -87,7 +89,6 @@ create table Schedule(ScheduleId int Identity(1,1) NOT NULL,
 	  Constraint [FK_Schedule_Batch] Foreign Key ([BatchId]) References [dbo].[Batch] ([BatchId]),
 	  Constraint [FK_Schedule_Module] Foreign Key ([ModuleId]) References [dbo].[Module] ([ModuleId]));
 
-
 create table Lecture(LectureId int Identity(1,1) NOT NULL,
       StaffId int NOT NULL,
 	  ScheduleId int NOT NULL,
@@ -103,13 +104,4 @@ create table Exam(ExamId int Identity(1,1) NOT NULL,
 	  Constraint [FK_Exam_Schedule] Foreign Key ([ScheduleId]) References [dbo].[Schedule] ([ScheduleId]),
 	  Constraint [FK_Exam_Staff] Foreign Key ([StaffId]) References [dbo].[Staff] ([StaffId]));
 	
-create table Role(RoleId int Identity(1,1) NOT NULL,
-      RoleName varchar(75) NOT NULL,
-	  Active bit NOT NULL,
-	  Constraint [PK_Role] Primary Key Clustered ([RoleId] ASC));
 
-	  create table Contact(ContactId int Identity(1,1) NOT NULL,
-	  UserId int NOT NULL,
-	  UserType varchar(10) NOT NULL,
-      ContactNumber int NOT NULL,
-	  Constraint [PK_Contact] Primary Key Clustered ([ContactId] ASC));
