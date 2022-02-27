@@ -10,6 +10,7 @@ namespace CourseSheduleManagement.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 

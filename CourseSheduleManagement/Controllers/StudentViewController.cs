@@ -1,6 +1,8 @@
 ﻿using CourseSheduleManagement.Method;
 using CourseSheduleManagement.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 
 namespace CourseSheduleManagement.Controllers
@@ -8,11 +10,12 @@ namespace CourseSheduleManagement.Controllers
     public class StudentViewController : Controller
     {
         CommonMethod _commonMethod = new CommonMethod();
-
+        
         public IActionResult Index()
         {
-            
-                return View();
+
+            var user =JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Student"));
+            return View();
 
         }
 

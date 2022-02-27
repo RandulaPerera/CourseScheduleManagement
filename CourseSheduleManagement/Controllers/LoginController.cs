@@ -1,6 +1,8 @@
 ﻿using CourseSheduleManagement.Method;
 using CourseSheduleManagement.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CourseSheduleManagement.Controllers
 {
@@ -20,7 +22,7 @@ namespace CourseSheduleManagement.Controllers
             {
 
                 User user=_loginMethods.GetStudentDetailsByEmail(loginUser.Email);
-               // Session["Student"] = user;
+                HttpContext.Session.SetString("Student",JsonConvert.SerializeObject(user));
                 return RedirectToAction("Index", "StudentView");
 
             }
@@ -28,7 +30,7 @@ namespace CourseSheduleManagement.Controllers
             {
 
                 User user = _loginMethods.GetStaffDetailsByEmail(loginUser.Email);
-
+                HttpContext.Session.SetString("Staff", JsonConvert.SerializeObject(user));
                 if (user.RoleName == "Lecturer")
                 {
                     return RedirectToAction("Index", "LecturerView");

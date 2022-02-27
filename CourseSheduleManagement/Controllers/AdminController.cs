@@ -1,6 +1,8 @@
 ﻿using CourseSheduleManagement.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,6 +22,8 @@ namespace CourseSheduleManagement.Controllers
 
         public IActionResult Index()
         {
+            var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Staff"));
+
             return View();
         }
 
