@@ -49,7 +49,9 @@ namespace CourseSheduleManagement.Controllers
         [HttpGet]
         public ActionResult GetLecturesByModule(int moduleId)
         {
-            var lectures = _commonMethod.GetLecturesByModule(moduleId);
+            var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Staff"));
+
+            var lectures = _commonMethod.GetLecturesByModule(moduleId, user.StaffId);
             return Json(lectures);
 
         }
@@ -67,7 +69,9 @@ namespace CourseSheduleManagement.Controllers
         [HttpGet]
         public ActionResult GetExamsByModule(int moduleId)
         {
-            var exams = _commonMethod.GetExamsByModule(moduleId);
+            var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Staff"));
+
+            var exams = _commonMethod.GetExamsByModule(moduleId, user.StaffId);
             return Json(exams);
 
         }

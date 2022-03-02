@@ -210,3 +210,4 @@ C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Raz
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LecturerView\Index.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\LecturerView\Lectures.cshtml.g.cs
 C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\Razor\Views\StudentView\Exams.cshtml.g.cs
+C:\Project\CourseScheduleManagement\CourseSheduleManagement\obj\Debug\net5.0\CourseSheduleManagement.csproj.AssemblyReference.cache

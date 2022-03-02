@@ -140,21 +140,23 @@ namespace CourseSheduleManagement.DataAccess
             return RunProcedureQueryText("select * from Module where Active=1 AND CourseId=@CourseId", parameters).Tables[0];
         }
 
-        public DataTable GetLecturesByModule(int moduleId)
+        public DataTable GetLecturesByModule(int moduleId, int staffId)
         {
             SqlParameter[] parameters = new SqlParameter[]
                     {
-                        new SqlParameter("@ModuleId",moduleId)
+                        new SqlParameter("@ModuleId",moduleId),
+                        new SqlParameter("@StaffId",staffId)
                     };
             return RunProcedureQuery("GetLecturesByModule", parameters).Tables[0];
         }
 
 
-        public DataTable GetExamsByModule(int moduleId)
+        public DataTable GetExamsByModule(int moduleId,int staffId)
         {
             SqlParameter[] parameters = new SqlParameter[]
                     {
-                        new SqlParameter("@ModuleId",moduleId)
+                        new SqlParameter("@ModuleId",moduleId),
+                        new SqlParameter("@StaffId",staffId)
                     };
             return RunProcedureQuery("GetExamsByModule", parameters).Tables[0];
         }
@@ -166,6 +168,16 @@ namespace CourseSheduleManagement.DataAccess
                         new SqlParameter("@StaffId",staffId)
                     };
             return RunProcedureQuery("GetAllExams", parameters).Tables[0];
+        }
+
+        public DataTable GetContactById(int studentId, string usertype)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@UserId",studentId),
+                         new SqlParameter("@UserType",usertype),
+                    };
+            return RunProcedureQueryText("select ContactId,UserId,ContactNumber from Contact where UserId=@UserId AND UserType=@UserType", parameters).Tables[0];
         }
     }
 }

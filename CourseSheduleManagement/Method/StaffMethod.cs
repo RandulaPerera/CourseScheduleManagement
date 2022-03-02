@@ -1,4 +1,5 @@
 ﻿using CourseSheduleManagement.DataAccess;
+using CourseSheduleManagement.Library;
 using CourseSheduleManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace CourseSheduleManagement.Method
     public class StaffMethod
     {
         StaffDataAccess _staffDataAccess = new StaffDataAccess();
+        CommonDataAccess _commonDataAccess = new CommonDataAccess();
 
         public DataTable GetStaff()
         {
@@ -34,6 +36,21 @@ namespace CourseSheduleManagement.Method
                 staff.RoleId = Convert.ToInt32(dt.Rows[0]["RoleId"].ToString());
 
             }
+
+            string usertype = "Staff";
+            DataTable dtc = _commonDataAccess.GetContactById(staffId, usertype);
+
+            staff.Contacts = new List<Contact>();
+
+            foreach (DataRow dr in dtc.Rows)
+            {
+                var contact = new Contact();
+                contact.ContactId = dr.GetValue<int>("ContactId");
+                contact.UserId = dr.GetValue<int>("UserId");
+                contact.ContactNumber = dr.GetValue<int>("ContactNumber");
+                staff.Contacts.Add(contact);
+            }
+
             return staff;
         }
         public int AddStaff(string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email,string password,int roleId)

@@ -243,9 +243,9 @@ namespace CourseSheduleManagement.Method
 
         }
 
-        public List<Lecture> GetLecturesByModule(int moduleId)
+        public List<Lecture> GetLecturesByModule(int moduleId,int staffId)
         {
-            DataTable dt = _commonDataAccess.GetLecturesByModule(moduleId);
+            DataTable dt = _commonDataAccess.GetLecturesByModule(moduleId, staffId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Lecture()
@@ -266,9 +266,9 @@ namespace CourseSheduleManagement.Method
 
         }
 
-        public List<Exam> GetExamsByModule(int moduleId)
+        public List<Exam> GetExamsByModule(int moduleId,int staffId)
         {
-            DataTable dt = _commonDataAccess.GetExamsByModule(moduleId);
+            DataTable dt = _commonDataAccess.GetExamsByModule(moduleId, staffId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Exam()

@@ -1,4 +1,5 @@
-﻿using CourseSheduleManagement.Method;
+﻿using CourseSheduleManagement.Library.Utilities;
+using CourseSheduleManagement.Method;
 using CourseSheduleManagement.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace CourseSheduleManagement.Controllers
                 User user = _loginMethods.GetStudentDetailsByEmail(loginUser.Email);
                 HttpContext.Session.SetString("Student", JsonConvert.SerializeObject(user));
 
-                if (loginUser.Email==user.Email && loginUser.Password==user.Password)
+                if (loginUser.Email==user.Email && loginUser.Password==Utilities.XorDecrypt(user.Password))
                 {
                     return RedirectToAction("Index", "StudentView");
 
@@ -43,7 +44,7 @@ namespace CourseSheduleManagement.Controllers
                 HttpContext.Session.SetString("Staff", JsonConvert.SerializeObject(user));
                 if (user.RoleName == "Lecturer")
                 {
-                    if (loginUser.Email==user.Email && loginUser.Password==user.Password)
+                    if (loginUser.Email==user.Email && loginUser.Password==Utilities.XorDecrypt(user.Password))
                     {
                         return RedirectToAction("Index", "LecturerView");
 
@@ -58,7 +59,7 @@ namespace CourseSheduleManagement.Controllers
                 }
                 else
                 {
-                    if (loginUser.Email==user.Email && loginUser.Password==user.Password)
+                    if (loginUser.Email==user.Email && loginUser.Password==Utilities.XorDecrypt(user.Password))
                     {
                         return RedirectToAction("Index", "Admin");
 

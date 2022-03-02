@@ -11,6 +11,7 @@ namespace CourseSheduleManagement.Method
     public class StudentMethod
     {
         StudentDataAccess _studentDataAccess = new StudentDataAccess();
+        CommonDataAccess _commonDataAccess = new CommonDataAccess();
 
         public DataTable GetStudents()
         {
@@ -36,8 +37,8 @@ namespace CourseSheduleManagement.Method
                 student.CourseId =Convert.ToInt32(dt.Rows[0]["CourseId"].ToString());
                 student.BatchId =Convert.ToInt32(dt.Rows[0]["BatchId"].ToString());
             }
-
-            DataTable dtc = _studentDataAccess.GetContactById(studentId);
+            string usertype = "Student";
+            DataTable dtc = _commonDataAccess.GetContactById(studentId, usertype);
 
             student.Contacts = new List<Contact>();
 

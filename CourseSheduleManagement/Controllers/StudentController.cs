@@ -1,5 +1,6 @@
 ﻿using CourseSheduleManagement.DataAccess;
 using CourseSheduleManagement.Library;
+using CourseSheduleManagement.Library.Utilities;
 using CourseSheduleManagement.Method;
 using CourseSheduleManagement.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -63,7 +64,7 @@ namespace CourseSheduleManagement.Controllers
             {
                 if (student.StudentId == 0)
                 {
-                    int studentId = _studentMethod.AddStudent(student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email,student.Password, student.CourseId, student.BatchId);
+                    int studentId = _studentMethod.AddStudent(student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email, Utilities.Encryptpassword(student.Password), student.CourseId, student.BatchId);
 
                     string usertype = "Student";
                     for (int i = 0; i<student.Contacts.Count; i++)
@@ -75,7 +76,7 @@ namespace CourseSheduleManagement.Controllers
 
                 }
                 else {
-                    _studentMethod.EditStudent(student.StudentId, student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email,student.Password, student.CourseId, student.BatchId);
+                    _studentMethod.EditStudent(student.StudentId, student.FirstName, student.LastName, student.Line1, student.Line2, student.DoB, student.Sex, student.NIC, student.Email, Utilities.Encryptpassword(student.Password), student.CourseId, student.BatchId);
 
 
                     Student stu=_studentMethod.GetStudentById(student.StudentId);

@@ -16,8 +16,7 @@ namespace CourseSheduleManagement.Models
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public List<Contact> Contacts { get; set; }
-        public int MobileNumber { get; set; } = 0;
-        public int Telephone { get; set; } = 0;
+     
         public int CourseId { get; set; } = 0;
         public int BatchId { get; set; } = 0;
     }

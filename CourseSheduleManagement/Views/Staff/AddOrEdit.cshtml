@@ -16,6 +16,7 @@
         <form asp-action="AddOrEdit" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="StaffId" />
+             <input type="hidden" id="hiddenContactCount" value="@Model.Contacts.Count" />
             <div class="form-group">
                  <div class="row">
                     <div class="col-6">
@@ -93,6 +94,22 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                  </div>
+                     <div class="row">
+
+                     @if(Model.Contacts != null && Model.Contacts.Count>0)
+                     {
+                         for (int i = 0; i < Model.Contacts.Count; i++)
+                         {
+                            <div class="col-4">                      
+                                <input asp-for="Contacts[i].ContactNumber" class="form-control" placeholder="Contact Number"/>
+                                <span asp-validation-for="Contacts[i].ContactNumber" class="text-danger"></span>
+                                 
+                             </div>
+                   
+                         }
+                        <button type="button" class="addContacts">+</button>
+                     }
+                </div>
             </div>
             <div class="form-group">
                  <div class="row">
@@ -116,6 +133,21 @@
      @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script type="text/javascript">
 
+      $("button.addContacts").on("click", function(e) {
+       
+                    debugger;
+                    var count=parseInt($("#hiddenContactCount").val());
+                    
+                    //html += '<div class="row">';
+                    html +='<div class="col-4">';
+                    html += '<input type="number" id="Contacts_'+count+'__ContactNumber" name="Contacts['+count+'].ContactNumber" class="form-control"  placeholder="Contact Number"><br/>';
+                    html += '</div>';
+                    //html += '</div>';
+                    $(this).before(html);  
+                    count++;
+                    $("#hiddenContactCount").val(count);
+                    
+        });
 
 
 </script>
