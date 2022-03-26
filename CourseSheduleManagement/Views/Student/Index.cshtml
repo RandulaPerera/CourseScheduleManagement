@@ -6,7 +6,14 @@
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script type="text/javascript">
-
+$(document).ready(function(){
+  $("#studentSearch").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#studentTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
 
 <div class="jumbotron">
@@ -21,7 +28,7 @@
                          
        </div>
        <div class="col-3">
-            <input class="form-control" id="" type="text" placeholder="Search..">
+            <input class="form-control" id="studentSearch" type="text" placeholder="Search..">
        </div>
     </div>
 </div>
@@ -58,7 +65,7 @@
             </th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="studentTable">
 
        @for (int i = 0; i < Model.Rows.Count; i++)
         {

@@ -9,7 +9,7 @@
 $(document).ready(function(){
   $("#moduleSearch").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("moduleTable tr").filter(function() {
+    $("#moduleTable tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
