@@ -75,6 +75,34 @@ namespace CourseSheduleManagement.DataAccess
             RunProcedureQuery("DeleteStudent", parameters);
         }
 
-       
+        public void AddStudentContactNumber(int studentId, int contactNumber)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@StudentId",studentId),
+            new SqlParameter("@ContactNumber",contactNumber)
+            };
+            RunProcedureQuery("AddStudentContactNumber", parameters);
+        }
+
+        public void UpdateStudentContactNumber(int contactId, int studentId, int contactNumber)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@ContactId",contactId),
+                        new SqlParameter("@StudentId",studentId),
+                        new SqlParameter("@ContactNumber",contactNumber)
+                    };
+            RunProcedureQueryText("update StudentContact set ContactNumber=@ContactNumber where ContactId=@ContactId AND StudentId=@StudentId", parameters);
+        }
+
+        public DataTable GetContactById(int studentId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@StudentId",studentId)
+                    };
+            return RunProcedureQueryText("select ContactId,StudentId,ContactNumber from StudentContact where StudentId=@StudentId", parameters).Tables[0];
+        }
     }
 }

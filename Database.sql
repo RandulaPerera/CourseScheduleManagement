@@ -27,19 +27,13 @@ create table Role(RoleId int Identity(1,1) NOT NULL,
 	  Active bit NOT NULL,
 	  Constraint [PK_Role] Primary Key Clustered ([RoleId] ASC));
 
-create table Contact(ContactId int Identity(1,1) NOT NULL,
-	  UserId int NOT NULL,
-	  UserType varchar(10) NOT NULL,
-      ContactNumber int NOT NULL,
-	  Constraint [PK_Contact] Primary Key Clustered ([ContactId] ASC));
-
 create table Student(StudentId int Identity(1,1) NOT NULL,
       FirstName varchar(30) NOT NULL,
       LastName varchar(30) NOT NULL,
       Line1 varchar(70) NOT NULL,
       Line2 varchar(70) NULL,
       DoB datetime NOT NULL,
-      Sex varchar(6) NOT NULL,
+      Sex varchar(10) NOT NULL,
       NIC varchar(20) NOT NULL,
       Email varchar(70) NOT NULL,
 	  Password varchar(70) NOT NULL,
@@ -64,7 +58,7 @@ create table Staff(StaffId int Identity(1,1) NOT NULL,
       Line1 varchar(70) NOT NULL,
       Line2 varchar(70) NULL,
       DoB datetime NOT NULL,
-      Sex varchar(6) NOT NULL,
+      Sex varchar(10) NOT NULL,
       NIC varchar(20) NOT NULL,
       Email varchar(70) NOT NULL,
 	  Password varchar(70) NOT NULL,
@@ -103,5 +97,15 @@ create table Exam(ExamId int Identity(1,1) NOT NULL,
 	  Constraint [PK_Exam] Primary Key Clustered ([ExamId] ASC),
 	  Constraint [FK_Exam_Schedule] Foreign Key ([ScheduleId]) References [dbo].[Schedule] ([ScheduleId]),
 	  Constraint [FK_Exam_Staff] Foreign Key ([StaffId]) References [dbo].[Staff] ([StaffId]));
-	
 
+create table StudentContact(ContactId int Identity(1,1) NOT NULL,
+	  StudentId int NOT NULL,
+      ContactNumber int NOT NULL,
+	  Constraint [PK_Contact] Primary Key Clustered ([ContactId] ASC),
+	  Constraint [FK_StudentContact_Student] Foreign Key ([StudentId]) References [dbo].[Student] ([StudentId]));
+
+create table StaffContact(ContactId int Identity(1,1) NOT NULL,
+	  StaffId int NOT NULL,
+      ContactNumber int NOT NULL,
+	  Constraint [PK_Contact] Primary Key Clustered ([ContactId] ASC),
+	  Constraint [FK_StaffContact_Staff] Foreign Key ([StaffId]) References [dbo].[Staff] ([StaffId]));

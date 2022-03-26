@@ -87,5 +87,7 @@ namespace CourseSheduleManagement.DataAccess
             };
             RunProcedureQuery("DeleteLecture", parameters);
         }
+
+       
     }
 }

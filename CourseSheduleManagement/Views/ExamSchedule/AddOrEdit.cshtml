@@ -24,12 +24,12 @@
                     </div>
                     <div class="col-4">
                         <label class="control-label">Batch</label>    
-                        <select id="selectBatchId" asp-for="BatchId" class="form-control"></select>
+                        <select id="selectBatchId" asp-for="BatchId" class="form-control" onchange="getModules();"></select>
                         <span asp-validation-for="BatchId" class="text-danger"></span>
                     </div>
                     <div class="col-4">
                         <label class="control-label">Module</label>    
-                        <select id="selectModuleId" asp-for="ModuleId" asp-items="ViewBag.ModuleList as SelectList" class="form-control">
+                        <select id="selectModuleId" asp-for="ModuleId"  class="form-control">
                              <option selected>-- Select Module --</option>
                         </select>
                         <span asp-validation-for="ModuleId" class="text-danger"></span>
@@ -101,6 +101,18 @@
             $("#selectBatchId").append("<option selected value=''>-- Select Batch --</option>");           
             $.each(data,function(index,row){
                 $("#selectBatchId").append("<option value='"+row.batchId+"'>"+row.batchCode+"</option>");
+            });
+        });
+
+    }
+
+    function getModules() {   
+      
+        $.get("/ExamSchedule/GetModuleList",{ courseId:$('#selectCourseId').val() },function(data){
+            $("#selectModuleId").empty();
+            $("#selectModuleId").append("<option selected value=''>-- Select Module --</option>");           
+            $.each(data,function(index,row){
+                $("#selectModuleId").append("<option value='"+row.moduleId+"'>"+row.moduleName+"</option>");
             });
         });
 }

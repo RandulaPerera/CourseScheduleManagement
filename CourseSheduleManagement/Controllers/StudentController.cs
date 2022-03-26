@@ -69,7 +69,7 @@ namespace CourseSheduleManagement.Controllers
                     string usertype = "Student";
                     for (int i = 0; i<student.Contacts.Count; i++)
                     {
-                        _commonMethod.AddContactNumber(studentId, student.Contacts[i].ContactNumber, usertype);
+                        _studentMethod.AddStudentContactNumber(studentId, student.Contacts[i].ContactNumber);
                     }
 
 
@@ -89,7 +89,7 @@ namespace CourseSheduleManagement.Controllers
                     string usertype = "Student";
                     for (int i = 0; i<student.Contacts.Count; i++)
                     {
-                        _commonMethod.UpdateContactNumber(updateContactId, student.StudentId, student.Contacts[i].ContactNumber,usertype);
+                        _studentMethod.UpdateStudentContactNumber(updateContactId, student.StudentId, student.Contacts[i].ContactNumber);
 
                     }
                 }

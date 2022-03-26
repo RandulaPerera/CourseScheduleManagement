@@ -44,14 +44,25 @@ namespace CourseSheduleManagement.DataAccess
             return int.Parse(RunProcedureScalar("AddStaff", parameters).ToString());
         }
 
-        public void AddStaffMobile(int staffId, int mobileNuber)
+        public void AddStaffContactNumber(int staffId, int contactNumber)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
             new SqlParameter("@StaffId",staffId),
-            new SqlParameter("@MobileNumber",mobileNuber)
+            new SqlParameter("@ContactNumber",contactNumber)
             };
-            RunProcedureQuery("AddStaffMobile", parameters);
+            RunProcedureQuery("AddStaffContactNumber", parameters);
+        }
+
+        public void UpdateStaffContactNumber(int contactId, int staffId, int contactNumber)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@ContactId",contactId),
+                        new SqlParameter("@StaffId",staffId),
+                        new SqlParameter("@ContactNumber",contactNumber)
+                    };
+            RunProcedureQueryText("update StaffContact set ContactNumber=@ContactNumber where ContactId=@ContactId AND StaffId=@StaffId", parameters);
         }
 
         public void EditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int roleId)
@@ -90,6 +101,15 @@ namespace CourseSheduleManagement.DataAccess
 
                     };
             return RunProcedureQueryText("select * from Role where Active=1", parameters).Tables[0];
+        }
+
+        public DataTable GetContactById(int staffId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+                    {
+                        new SqlParameter("@StaffId",staffId)
+                    };
+            return RunProcedureQueryText("select ContactId,StaffId,ContactNumber from StaffContact where StaffId=@StaffId", parameters).Tables[0];
         }
     }
 }

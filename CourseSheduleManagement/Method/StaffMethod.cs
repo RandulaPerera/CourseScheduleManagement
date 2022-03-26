@@ -37,8 +37,8 @@ namespace CourseSheduleManagement.Method
 
             }
 
-            string usertype = "Staff";
-            DataTable dtc = _commonDataAccess.GetContactById(staffId, usertype);
+           
+            DataTable dtc = _staffDataAccess.GetContactById(staffId);
 
             staff.Contacts = new List<Contact>();
 
@@ -46,7 +46,7 @@ namespace CourseSheduleManagement.Method
             {
                 var contact = new Contact();
                 contact.ContactId = dr.GetValue<int>("ContactId");
-                contact.UserId = dr.GetValue<int>("UserId");
+                contact.UserId = dr.GetValue<int>("StaffId");
                 contact.ContactNumber = dr.GetValue<int>("ContactNumber");
                 staff.Contacts.Add(contact);
             }
@@ -57,9 +57,14 @@ namespace CourseSheduleManagement.Method
         {
             return _staffDataAccess.AddStaff(firstName,lastName,line1,line2,dob,sex,nic,email,password,roleId);
         }
-        public void AddStaffMobile(int staffId, int mobileNumber)
+        public void AddStaffContactNumber(int staffId, int contactNumber)
         {
-            _staffDataAccess.AddStaffMobile(staffId, mobileNumber);
+            _staffDataAccess.AddStaffContactNumber(staffId, contactNumber);
+        }
+
+        public void UpdateStaffContactNumber(int contactId, int staffId, int contactNumber)
+        {
+            _staffDataAccess.UpdateStaffContactNumber(contactId, staffId, contactNumber);
         }
 
         public void EditStaff(int staffId, string firstName, string lastName, string line1, string line2, DateTime dob, string sex, string nic, string email, string password, int roleId)

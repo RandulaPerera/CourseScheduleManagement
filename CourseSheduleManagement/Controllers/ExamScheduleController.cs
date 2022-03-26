@@ -33,9 +33,6 @@ namespace CourseSheduleManagement.Controllers
             List<Hall> hallList = _commonMethod.GetHalls();
             ViewBag.HallList=new SelectList(hallList, "HallId", "HallName");
 
-            List<Module> moduleList = _commonMethod.GetModules();
-            ViewBag.ModuleList=new SelectList(moduleList, "ModuleId", "ModuleName");
-
             List<Staff> staffList = _commonMethod.GetStaff();
             ViewBag.StaffList=new SelectList(staffList, "StaffId", "FullName");
 
@@ -58,9 +55,6 @@ namespace CourseSheduleManagement.Controllers
 
                 List<Hall> hallList = _commonMethod.GetHalls();
                 ViewBag.HallList=new SelectList(hallList, "HallId", "HallName");
-
-                List<Module> moduleList = _commonMethod.GetModules();
-                ViewBag.ModuleList=new SelectList(moduleList, "ModuleId", "ModuleName");
 
                 List<Staff> staffList = _commonMethod.GetStaff();
                 ViewBag.StaffList=new SelectList(staffList, "StaffId", "FullName");
@@ -105,6 +99,13 @@ namespace CourseSheduleManagement.Controllers
         {
             List<Batch> batchList = _commonMethod.GetBatchByCourseId(courseId);
             return Json(batchList);
+        }
+
+        [HttpGet]
+        public ActionResult GetModuleList(int courseId)
+        {
+            List<Module> moduleList = _commonMethod.GetModuleByCourseId(courseId);
+            return Json(moduleList);
         }
     }
 }

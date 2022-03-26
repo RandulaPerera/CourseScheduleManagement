@@ -49,7 +49,7 @@ namespace CourseSheduleManagement.Controllers
         {
             var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Student"));
 
-            var exams = _commonMethod.SearchExamsByModule(moduleId, user.CourseId);
+            var exams = _commonMethod.SearchExamsByModule(moduleId, user.CourseId,user.BatchId);
             return Json(exams);
 
         }
@@ -59,7 +59,7 @@ namespace CourseSheduleManagement.Controllers
         {
             var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Student"));
 
-            var exams = _commonMethod.AllExams(user.CourseId);
+            var exams = _commonMethod.AllExams(user.CourseId,user.BatchId);
             return Json(exams);
 
         }
@@ -70,7 +70,7 @@ namespace CourseSheduleManagement.Controllers
 
             var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Student"));
 
-            var lectures = _commonMethod.SearchLecturesByDate(date, user.CourseId);
+            var lectures = _commonMethod.SearchLecturesByDate(date, user.CourseId,user.BatchId);
             return Json(lectures);
 
         }
@@ -81,7 +81,7 @@ namespace CourseSheduleManagement.Controllers
         {
             var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Student"));
 
-            var lectures = _commonMethod.SearchLecturesByModule(moduleId, user.CourseId);
+            var lectures = _commonMethod.SearchLecturesByModule(moduleId, user.CourseId, user.BatchId);
             return Json(lectures);
 
         }
@@ -91,7 +91,7 @@ namespace CourseSheduleManagement.Controllers
         {
             var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("Student"));
 
-            var lectures = _commonMethod.AllLectures(user.CourseId);
+            var lectures = _commonMethod.AllLectures(user.BatchId,user.CourseId);
             return Json(lectures);
 
         }

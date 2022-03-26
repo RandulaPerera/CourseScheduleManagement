@@ -24,14 +24,14 @@
                     </div>
                     <div class="col-6">
                         <label class="control-label">Batch</label>    
-                        <select id="selectBatchId" asp-for="BatchId" class="form-control"></select>
+                        <select id="selectBatchId" asp-for="BatchId" class="form-control" onchange="getModules();"></select>
                         <span asp-validation-for="BatchId" class="text-danger"></span>
                     </div>
                  </div>
                   <div class="row">
                       <div class="col-3">
                         <label class="control-label">Module</label>    
-                        <select id="selectModuleId" asp-for="ModuleId" asp-items="ViewBag.ModuleList as SelectList" class="form-control">
+                        <select id="selectModuleId" asp-for="ModuleId" class="form-control">
                              <option selected>-- Select Module --</option>
                         </select>
                         <span asp-validation-for="ModuleId" class="text-danger"></span>
@@ -76,10 +76,7 @@
                         <input id="endtime" asp-for="EndTime" type="time" class="form-control"/>
                         <span asp-validation-for="EndTime" class="text-danger"></span>
                     </div>
-                    <div class="col-3">
-                        <input type="button" style="margin-top:20px" id="btnAddToList" value="Add" name="AddToList" class="btn btn-success" />
-
-                    </div>
+                    
                      
                  </div>
      
@@ -121,6 +118,17 @@
             $("#selectBatchId").append("<option selected value=''>-- Select Batch --</option>");           
             $.each(data,function(index,row){
                 $("#selectBatchId").append("<option value='"+row.batchId+"'>"+row.batchCode+"</option>");
+            });
+        });
+    }
+
+    function getModules() {   
+      
+        $.get("/LectureSchedule/GetModuleList",{ courseId:$('#selectCourseId').val() },function(data){
+            $("#selectModuleId").empty();
+            $("#selectModuleId").append("<option selected value=''>-- Select Module --</option>");           
+            $.each(data,function(index,row){
+                $("#selectModuleId").append("<option value='"+row.moduleId+"'>"+row.moduleName+"</option>");
             });
         });
     }

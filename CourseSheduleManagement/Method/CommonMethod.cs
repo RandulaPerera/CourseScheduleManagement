@@ -83,9 +83,9 @@ namespace CourseSheduleManagement.Method
             return list;
         }
 
-        public List<Lecture> SearchLecturesByDate(DateTime date,int courseId)
+        public List<Lecture> SearchLecturesByDate(DateTime date,int courseId,int batchId)
         {
-            DataTable dt = _commonDataAccess.SearchLecturesByDate(date, courseId);
+            DataTable dt = _commonDataAccess.SearchLecturesByDate(date, courseId, batchId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Lecture()
@@ -106,9 +106,9 @@ namespace CourseSheduleManagement.Method
 
         }
 
-        public List<Exam> SearchExamsByModule(int moduleId, int courseId)
+        public List<Exam> SearchExamsByModule(int moduleId, int courseId,int batchId)
         {
-            DataTable dt = _commonDataAccess.SearchExamsByModule(moduleId, courseId);
+            DataTable dt = _commonDataAccess.SearchExamsByModule(moduleId, courseId,batchId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Exam()
@@ -128,9 +128,9 @@ namespace CourseSheduleManagement.Method
 
         }
 
-        public List<Lecture> SearchLecturesByModule(int moduleId,int courseId)
+        public List<Lecture> SearchLecturesByModule(int moduleId,int courseId,int batchId)
         {
-            DataTable dt = _commonDataAccess.SearchLecturesByModule(moduleId, courseId);
+            DataTable dt = _commonDataAccess.SearchLecturesByModule(moduleId, courseId, batchId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Lecture()
@@ -151,9 +151,9 @@ namespace CourseSheduleManagement.Method
 
         }
 
-        public List<Lecture> AllLectures(int courseId)
+        public List<Lecture> AllLectures(int batchId,int courseId)
         {
-            DataTable dt = _commonDataAccess.AllLectures(courseId);
+            DataTable dt = _commonDataAccess.AllLectures(batchId, courseId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Lecture()
@@ -174,9 +174,9 @@ namespace CourseSheduleManagement.Method
 
         }
 
-        public List<Exam> AllExams(int courseId)
+        public List<Exam> AllExams(int courseId,int batchId)
         {
-            DataTable dt = _commonDataAccess.AllExams(courseId);
+            DataTable dt = _commonDataAccess.AllExams(courseId,batchId);
 
             var list = (from dr in dt.AsEnumerable()
                         select new Exam()
@@ -196,15 +196,6 @@ namespace CourseSheduleManagement.Method
 
         }
 
-        public void AddContactNumber(int userId, int contactNumber,string userType)
-        {
-            _commonDataAccess.AddContactNumber(userId, contactNumber,userType);
-        }
-
-        public void UpdateContactNumber(int contactId,int userId, int contactNumber, string userType)
-        {
-            _commonDataAccess.UpdateContactNumber(contactId,userId, contactNumber, userType);
-        }
 
         public List<Module> GetModulesByCourseId(int courseId)
         {
@@ -308,6 +299,20 @@ namespace CourseSheduleManagement.Method
 
             return list;
 
+        }
+
+        public List<Module> GetModuleByCourseId(int courseId)
+        {
+            DataTable dt = _commonDataAccess.GetModuleByCourseId(courseId);
+            var list = new List<Module>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Module module = new Module();
+                module.ModuleId = Convert.ToInt32(dt.Rows[i]["ModuleId"]);
+                module.ModuleName = dt.Rows[i]["ModuleName"].ToString();
+                list.Add(module);
+            }
+            return list;
         }
     }
 }

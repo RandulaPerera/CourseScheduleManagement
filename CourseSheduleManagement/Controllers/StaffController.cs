@@ -65,10 +65,9 @@ namespace CourseSheduleManagement.Controllers
                 {
                     int staffId = _staffMethod.AddStaff(staff.FirstName, staff.LastName, staff.Line1, staff.Line2, staff.DoB, staff.Sex, staff.NIC, staff.Email, Utilities.Encryptpassword(staff.Password),staff.RoleId);
 
-                    string usertype = "Staff";
                     for (int i = 0; i<staff.Contacts.Count; i++)
                     {
-                        _commonMethod.AddContactNumber(staffId, staff.Contacts[i].ContactNumber, usertype);
+                        _staffMethod.AddStaffContactNumber(staffId, staff.Contacts[i].ContactNumber);
                     }
                     // ViewBag.Message = "Student Details Added Successfully";
                 }
@@ -83,10 +82,9 @@ namespace CourseSheduleManagement.Controllers
                         updateContactId=sta.Contacts[j].ContactId;
                     }
 
-                    string usertype = "Staff";
                     for (int i = 0; i<staff.Contacts.Count; i++)
                     {
-                        _commonMethod.UpdateContactNumber(updateContactId, staff.StaffId, staff.Contacts[i].ContactNumber, usertype);
+                        _staffMethod.UpdateStaffContactNumber(updateContactId, staff.StaffId, staff.Contacts[i].ContactNumber);
 
                     }
                 }

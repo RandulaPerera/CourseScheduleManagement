@@ -37,8 +37,8 @@ namespace CourseSheduleManagement.Method
                 student.CourseId =Convert.ToInt32(dt.Rows[0]["CourseId"].ToString());
                 student.BatchId =Convert.ToInt32(dt.Rows[0]["BatchId"].ToString());
             }
-            string usertype = "Student";
-            DataTable dtc = _commonDataAccess.GetContactById(studentId, usertype);
+           
+            DataTable dtc = _studentDataAccess.GetContactById(studentId);
 
             student.Contacts = new List<Contact>();
 
@@ -46,7 +46,7 @@ namespace CourseSheduleManagement.Method
             {
                 var contact = new Contact();
                 contact.ContactId = dr.GetValue<int>("ContactId");
-                contact.UserId = dr.GetValue<int>("UserId");
+                contact.UserId = dr.GetValue<int>("StudentId");
                 contact.ContactNumber = dr.GetValue<int>("ContactNumber");
                 student.Contacts.Add(contact);
             }
@@ -68,7 +68,15 @@ namespace CourseSheduleManagement.Method
             _studentDataAccess.DeleteStudent(studentId);
         }
 
-      
+        public void AddStudentContactNumber(int studentId, int contactNumber)
+        {
+            _studentDataAccess.AddStudentContactNumber(studentId, contactNumber);
+        }
+
+        public void UpdateStudentContactNumber(int contactId, int studentId, int contactNumber)
+        {
+            _studentDataAccess.UpdateStudentContactNumber(contactId, studentId, contactNumber);
+        }
     }
 
 
